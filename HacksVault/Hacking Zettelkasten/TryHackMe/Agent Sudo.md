@@ -57,13 +57,13 @@ nothing.
 
 ### Website
 
-<img src="HacksVault/2 - Resources/Others/Flameshots" alt="d1e991aac0330206ce335ec112638db9.png" width="370" height="171" class="jop-noMdConv">
+<img src="HacksVault/2 - Resources/Others/Flameshots/d1e991aac0330206ce335ec112638db9.png" width="370" height="171" class="jop-noMdConv">
 
 So we need the **codename** .
 
 We modify the user-agent in the request in [Developer tools](../../3%20-%20Tags/Hacking%20Concepts/Developer%20tools.md) and resend it, we find a page:
 
-<img src="../../Flameshots/a3e1cd23a665cff66f9bd84751957fff.png" alt="a3e1cd23a665cff66f9bd84751957fff.png" width="655" height="127" class="jop-noMdConv">
+<img src="HacksVault/2 - Resources/Others/Flameshots/a3e1cd23a665cff66f9bd84751957fff.png" alt="a3e1cd23a665cff66f9bd84751957fff.png" width="655" height="127" class="jop-noMdConv">
 
 We have a username .
 
