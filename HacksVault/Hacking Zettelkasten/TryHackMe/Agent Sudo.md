@@ -13,7 +13,7 @@ Welcome to another THM exclusive CTF room. Your task is simple, capture the flag
 We add the host in /etc/hosts (sudo.thm) and scan with our [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) tool :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ nmap  -A -p- 10.10.17.51
 
 PORT   STATE SERVICE VERSION
@@ -32,7 +32,7 @@ PORT   STATE SERVICE VERSION
 We start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on the http [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -u http://sudo.thm 
     
 
@@ -47,7 +47,7 @@ nothing.
 We run [FFuf](../../3%20-%20Tags/Hacking%20Tools/FFuf.md) and check **Size** then re-run with correct filter-size (-fs) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -H 'Host: FUZZ.sudo.thm' -u http://sudo.thm -fs 218 -c  
 
 
@@ -95,11 +95,11 @@ Port number (press enter for default): 21
 Now we can enter [FTP](../../3%20-%20Tags/Hacking%20Concepts/FTP.md) to see what's there and get it to our directory :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ ftp sudo.thm   
 Connected to sudo.thm.
 220 (vsFTPd 3.0.3)
-Name (sudo.thm:hax): chris
+Name (sudo.thm:mdn0x): chris
 331 Please specify the password.
 Password: 
 230 Login successful.
@@ -117,7 +117,7 @@ ftp> ls
 Now we cat these :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ cat To_agentJ.txt 
 Dear agent J,
 
@@ -134,7 +134,7 @@ We use [Stegcracker](../../3%20-%20Tags/Hacking%20Tools/Stegcracker.md) to crack
 
 ```
                                                                                          
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ stegcracker cute-alien.jpg 
 
 No wordlist was specified, using default rockyou.txt wordlist.
@@ -150,7 +150,7 @@ Area51
 So let's cat it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ cat cute-alien.jpg.out 
 Hi james,
 
@@ -174,7 +174,7 @@ We don't have anonymous access in [SSH](../../3%20-%20Tags/Hacking%20Concepts/SS
 Now we can access with the credentials found :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/AgentSudo]
 └─$ ssh james@sudo.thm        
 james@sudo.thm's password: 
 Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-55-generic x86_64)
