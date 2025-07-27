@@ -1,0 +1,1 @@
+**[CrackMapExec](CrackMapExec.md)** is a well-known network service exploitation tool that we will use throughout this module. It allows us to perform enumeration, command execution, and post-exploitation attacks in Windows environments. It supports various network protocols, such as SMB, LDAP, RDP, and SSH.
