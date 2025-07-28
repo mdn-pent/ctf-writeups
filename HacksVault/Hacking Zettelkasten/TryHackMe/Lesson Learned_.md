@@ -13,7 +13,7 @@ Root it.
 Let's use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) to scan the open ports on the machine :
 
 ```
-──(hax㉿HaxonKali)-[~]
+──(mdn0x㉿mdn0xKali)-[~]
 └─$ rustscan -a 10.10.142.189 
 
          Open 10.10.142.189:22
@@ -27,7 +27,7 @@ Let's use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) to scan the
 We can now enumerate with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-──(hax㉿HaxonKali)-[~]
+──(mdn0x㉿mdn0xKali)-[~]
 └─$ gobuster dir -u 10.10.142.189 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
 
 /manual               (Status: 301) [Size: 315] [--> http://10.10.142.189/manual/]

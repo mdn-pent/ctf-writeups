@@ -28,7 +28,7 @@ we can `ping silverplatter.thm` to confirm we can connect.
 Now we can scan with [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will automatically use [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) to start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ rustscan -a silverplatter.thm -- -A 
 PORT     STATE SERVICE    REASON         VERSION
 22/tcp   open  ssh        syn-ack ttl 63 OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
@@ -53,7 +53,7 @@ PORT     STATE SERVICE    REASON         VERSION
 First thing we check if we can access [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) on port 22 with password and not encrypted key :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ ssh root@silverplatter.thm
 The authenticity of host 'silverplatter.thm (10.10.101.109)' can't be established.
 ED25519 key fingerprint is SHA256:WFcHcO+oxUb2E/NaonaHAgqSK3bp9FP8hsg5z2pkhuE.
@@ -77,7 +77,7 @@ We have a [Website](../../3%20-%20Tags/Hacking%20Concepts/Website.md) but we nee
 We can perform directories [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-big.txt -u http://silverplatter.thm
 
 
@@ -95,7 +95,7 @@ When we run [FFuf](../../3%20-%20Tags/Hacking%20Tools/FFuf.md) the first time we
 graphql                 [Status: 200, Size: 14124, Words: 926, Lines: 346, Duration: 54ms]
 :: Progress: [20478/20478] :: Job [1/1] :: 735 req/sec :: Duration: [0:00:31] :: Errors: 0 ::
                                                                                                                     
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -H 'Host: FUZZ.silverplatter.thm' -u http://silverplatter.thm -fs 14124 -c
 
 ```
@@ -140,7 +140,7 @@ We have a username so we can attack with **[Password spraying](../../3%20-%20Tag
 We can create a custom passwdlist based on the website with [Cewl](../../3%20-%20Tags/Hacking%20Tools/Cewl.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ cewl http://silverplatter.thm > passwords.txt
 
 ```
@@ -210,7 +210,7 @@ Password: cm0nt!md0ntf0rg3tth!spaw0rdagainlol
 We can access [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM]
+┌──(mdn0x㉿mdn0xKali)-[~/THM]
 └─$ ssh tim@silverplatter.thm
 tim@silverplatter.thm's password: 
 Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-91-generic x86_64)

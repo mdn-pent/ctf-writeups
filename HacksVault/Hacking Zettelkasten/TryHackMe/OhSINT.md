@@ -23,7 +23,7 @@ We have the background image for the windowsXP Desktop :' ) :
 We use [Exiftool](../../3%20-%20Tags/Hacking%20Tools/Exiftool.md) to find metadata info on the image :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/OhSINT]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/OhSINT]
 └─$ exiftool WindowsXP_1551719014755.jpg       
 ExifTool Version Number         : 13.25
 File Name                       : WindowsXP_1551719014755.jpg

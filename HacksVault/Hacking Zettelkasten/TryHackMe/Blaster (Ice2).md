@@ -16,7 +16,7 @@ Throughout this room, we'll be looking at alternative modes of exploitation with
 Now that we've launched our target, let's perform some basic [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) of the services running on it! We can use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) and pass the results to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blaster]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blaster]
 └─$ rustscan -a 10.10.5.52 -- -A                                  
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -45,7 +45,7 @@ We visit the [Webpage](../../3%20-%20Tags/Hacking%20Concepts/Webpage.md) :
 We can use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) for [Fuzzing](../../3%20-%20Tags/Hacking%20Concepts/Fuzzing.md) the [Website](../../3%20-%20Tags/Hacking%20Concepts/Website.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blaster]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blaster]
 └─$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -u http://10.10.5.52 
 ===============================================================
 Gobuster v3.6
@@ -91,7 +91,7 @@ Log into the machine via Microsoft Remote Desktop (MSRDP) and read user.txt. Wha
 
 We can use [XfreeRDP3](../../3%20-%20Tags/Hacking%20Tools/XfreeRDP3.md) :
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blaster]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blaster]
 └─$ xfreerdp3 /v:10.10.5.52 /u:wade /p:parzival
 ```
 
@@ -135,7 +135,7 @@ Now that we've thoroughly compromised our target machine, let's return to our ex
 Since we know our victim machine is running Windows Defender, let's go ahead and try a different method of [Payload](../../3%20-%20Tags/Hacking%20Concepts/Payload.md) delivery! For this, we'll be using the script web delivery exploit within [Metasploit](../../3%20-%20Tags/Hacking%20Tools/Metasploit.md). Launch [Metasploit](../../3%20-%20Tags/Hacking%20Tools/Metasploit.md) now and select 'exploit/multi/script/web_delivery' for use :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ msfconsole   
 Metasploit tip: Display the Framework log using the log command, learn 
 more with help log

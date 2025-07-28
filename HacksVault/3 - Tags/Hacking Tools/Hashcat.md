@@ -1,6 +1,6 @@
 ## Identifying hash types
 
-To identify the type of hashes, I used `hashid` and `hash-identifier` tools on Kali Linux. There are many more similar tools for hash identification (even websites like [https://hashes.com/en/tools/hash_identifier](https://hashes.com/en/tools/hash_identifier) or [https://dehash.sh/hash_identify](https://dehash.sh/hash_identify)). You can use whichever one you prefer.
+To identify the type of hashes, I used `hashid` and [HashIdentifier](./HashIdentifier.md) tools on [Kali Linux](./Kali%20Linux.md). There are many more similar tools for hash identification (even websites like [https://hashes.com/en/tools/hash_identifier](https://hashes.com/en/tools/hash_identifier) or [https://dehash.sh/hash_identify](https://dehash.sh/hash_identify)). You can use whichever one you prefer.
 
 I prefer `hashid`, because it has an option to show hashcat mode directly in the output.
 

