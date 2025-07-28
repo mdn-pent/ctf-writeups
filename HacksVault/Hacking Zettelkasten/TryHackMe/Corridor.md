@@ -20,7 +20,7 @@ In this challenge, you will explore potential **[IDOR](../../3%20-%20Tags/Hackin
 We can use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) which automatically passes the results to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) for further scans with -- :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ rustscan -a 10.10.45.119 -- -A
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
