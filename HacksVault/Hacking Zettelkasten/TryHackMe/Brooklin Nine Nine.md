@@ -32,7 +32,7 @@ We can start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md)
 └─$ ftp 10.10.32.25 
 Connected to 10.10.32.25.
 220 (vsFTPd 3.0.3)
-Name (10.10.32.25:hax): anonymous
+Name (10.10.32.25:mdn0x): anonymous
 331 Please specify the password.
 Password: 
 230 Login successful.
