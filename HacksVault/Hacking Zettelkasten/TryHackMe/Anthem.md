@@ -22,7 +22,7 @@ In this room, you don't need to brute force any login page. Just your preferred 
 We use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) and pass the results to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ rustscan -a 10.10.21.71 -- -A 
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
 | {}  }| { } |{ {__ {_   _}{ {__  /  ___} / {} \ |  `| |
@@ -35,7 +35,7 @@ ________________________________________
  --------------------------------------
 RustScan: Because guessing isn't hacking.
 
-[~] The config file is expected to be at "/home/hax/.rustscan.toml"
+[~] The config file is expected to be at "/home/mdn0x/.rustscan.toml"
 [!] File limit is lower than default batch size. Consider upping with --ulimit. May cause harm to sensitive servers
 [!] Your file limit is very small, which negatively impacts RustScan's speed. Use the Docker image, or up the Ulimit with '--ulimit 5000'. 
 Open 10.10.21.71:80
@@ -60,7 +60,7 @@ If we search on google about this poem we find a name : **Solomon Grundy
 We use [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) to search for hidden directories :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://10.10.21.71 
 ===============================================================
 Gobuster v3.6
@@ -133,7 +133,7 @@ Let's figure out the username and password to log in to the box. (The box is not
 We use [XfreeRDP3](../../3%20-%20Tags/Hacking%20Tools/XfreeRDP3.md) to Remote Desktop our machine :
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ xfreerdp3 /v:10.10.21.71  /u:SG /p:UmbracoIsTheBest!
 ```
 
@@ -164,7 +164,7 @@ And that's the admin password, now we can re-login as Administrator user :
 ## Root
 
 ```
-┌──(hax㉿HaxonKali)-[~]
+┌──(mdn0x㉿mdn0xonKali)-[~]
 └─$ xfreerdp3 /v:10.10.21.71  /u:Administrator /p:ChangeMeBaby1MoreTime
 
 ```
