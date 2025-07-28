@@ -51,7 +51,7 @@ We can find all the password retrieved by the attacker :
 Now we can crack all the passwords with [JohnTheRipper](../../3%20-%20Tags/Hacking%20Tools/JohnTheRipper.md) and see how many we got with the fasttrack.txt wordlist :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Overpass2]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Overpass2]
 └─$ john passwd /usr/share/wordlists/fasttrack.txt 
 Warning: only loading hashes of type "sha512crypt", but also saw type "tripcode"
 Use the "--format=tripcode" option to force loading hashes of that type instead
@@ -132,7 +132,7 @@ So the port 80 is showing this message :
 We can access [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) with james and the cracked password on port 2222 (see payload) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Overpass2]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Overpass2]
 └─$ ssh james@10.10.173.247 -p 2222         
 The authenticity of host '10.10.173.247 (10.10.173.247)' can't be established.
 ED25519 key fingerprint is SHA256:M+alDmfQ9SPk8CLKIRe6QQD9sNcr/ptoDNbQLZDzIqs.
