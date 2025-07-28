@@ -18,7 +18,7 @@ Twitter: fieldraccoon
 We add the host in /etc/hosts (cyborg.thm) and scan with [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
 └─$ nmap -A 10.10.16.31        
 
 22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
@@ -35,7 +35,7 @@ We add the host in /etc/hosts (cyborg.thm) and scan with [Nmap](../../3%20-%20Ta
 We start [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) on port 80 with [Gobuster](../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
 └─$ gobuster dir -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -u http://cyborg.thm
 
 
@@ -111,12 +111,12 @@ as for the my-files part this seems to be the music_archive that was mentioned e
 So we can extract our archive now (note the /path/to/archive might be different for everyone) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
 └─$ sudo apt install borgbackup   
 
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
 └─$ borg extract home/field/dev/final_archive::music_archive      
-Enter passphrase for key /home/hax/THM/CHALLENGES/Easy/Cyborg/home/field/dev/final_archive: squidward
+Enter passphrase for key /home/mdn0x/THM/CHALLENGES/Easy/Cyborg/home/field/dev/final_archive: squidward
 
 ```
 
@@ -132,7 +132,7 @@ boom !
 We can try the credentials in [SSH](../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
 ```
-┌──(hax㉿HaxonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
+┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/Cyborg]
 └─$ ssh alex@10.10.51.181      
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 alex@10.10.51.181's password:  
