@@ -193,7 +193,7 @@ Nmap done: 1 IP address (1 host up) scanned in 112.14 seconds
 
 ```
 
-So a lot of them are just [MSRPC](../../3%20-%20Tags/Hacking%20Concepts/MSRPC.md) .
+So a lot of them are just [Microsoft Remote Procedure Call (MSRPC)](../../3%20-%20Tags/Hacking%20Concepts/Microsoft%20Remote%20Procedure%20Call%20(MSRPC).md) .
 # Enumeration
 
 ## HTTP (8080)
