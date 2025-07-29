@@ -22,6 +22,6 @@ You can open the vault with Obsidian to also see the Graph Map created by the co
 
 ## Note
 
-This repo is still in progress so you may not find all content filled but i'm updating it every time i can. 
+This repo is still in progress so you may not find all content filled but i'm updating it almost every day. 
 
 Thank you for reading.
