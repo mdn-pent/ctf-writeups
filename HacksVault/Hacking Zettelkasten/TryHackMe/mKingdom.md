@@ -85,7 +85,7 @@ If we simply try `admin: password` it works :
 
 ![Pasted image 20250724145630.png](../../2%20-%20Resources/Others/Flameshots/Pasted%20image%2020250724145630.png)
 
-We search for version and allowed files typ :
+We search for version and allowed files type  :
 
 ![Pasted image 20250724150030.png](../../2%20-%20Resources/Others/Flameshots/Pasted%20image%2020250724150030.png)
 
