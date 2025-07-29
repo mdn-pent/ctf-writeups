@@ -9,7 +9,7 @@ Tags : #easy
 # Recon
 ## Rustscan - Nmap
 
-We use [Rustscan](../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
+First we add the target IP to our /etc/hosts file, then we use [Rustscan](../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
 
 ```
 
