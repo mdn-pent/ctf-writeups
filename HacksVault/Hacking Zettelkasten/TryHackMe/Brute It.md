@@ -216,7 +216,7 @@ john:x:1001:1001:john,,,:/home/john:/bin/bash
 
 ## Unshadow 
 
-Now we create the 2 files and use [Unshadow](../../3%20-%20Tags/Hacking%20Tools/Unshadow.md) to reveal the password :
+Now we create the 2 files and use `unshadow` to reveal the password :
 
 ```
 ┌──(mdn0x㉿mdn0xonKali)-[~/THM/CHALLENGES/Easy/bruteit]
