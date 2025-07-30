@@ -11,4 +11,7 @@ In the first tier, you will gain essential skills in the world of cybersecurity 
 ## Boxes
 
 1. [Meow](./Meow.md)
-2. 
+2. [Fawn](./Fawn.md)
+3. [Dancing](./Dancing.md)
+4. [Reedemer](./Reedemer.md)
+

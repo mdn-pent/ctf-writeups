@@ -229,5 +229,5 @@ You can exit [FTP](../../../../3%20-%20Tags/Hacking%20Concepts/FTP.md) with `bye
 ```bash
 ┌──(mdn0x㉿mdn0xKali)-[~]
 └─$ cat flag.txt  
- [[redacted_flag]]       
+ 035db21c881520061c53e0536e44f815       
 ```
