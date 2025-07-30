@@ -1,6 +1,6 @@
 ## Overview of SMBclient
 
-SMBclient is a command-line tool that allows users to access and interact with shared resources on servers using the Server Message Block (SMB) protocol. It is part of the Samba suite, which provides seamless file and print services to SMB/CIFS clients. SMBclient is commonly used for accessing shared files and directories on Windows and Linux systems.
+SMBclient is a command-line tool that allows users to access and interact with shared resources on servers using the Server Message Block ([SMB](../Hacking%20Concepts/SMB.md)) protocol. It is part of the Samba suite, which provides seamless file and print services to SMB/CIFS clients. SMBclient is commonly used for accessing shared files and directories on Windows and Linux systems.
 
 ### Key Features
 
