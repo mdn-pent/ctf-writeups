@@ -318,6 +318,6 @@ And we `get` flag :
 
 ```bash
 redm.htb:6379> get flag
-"03e1d2b376c37ab3f5319922053953eb"
+"redacted_flag"
 ```
 
