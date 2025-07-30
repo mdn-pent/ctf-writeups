@@ -114,7 +114,7 @@ Open the file on the share. There is a few interesting things found.
 
 ## RPC (111)
 
-Your earlier nmap port scan will have shown port 111 running the service rpcbind. This is just a server that converts [remote procedure call (RPC)](../../3%20-%20Tags/Hacking%20Concepts/remote%20procedure%20call%20(RPC).md) program number into universal addresses. When an RPC service is started, it tells rpcbind the address at which it is listening and the RPC program number its prepared to serve.
+Your earlier nmap port scan will have shown port 111 running the service rpcbind. This is just a server that converts [Remote Procedure Call (RPC)](../../3%20-%20Tags/Hacking%20Concepts/Remote%20Procedure%20Call%20(RPC).md) program number into universal addresses. When an RPC service is started, it tells rpcbind the address at which it is listening and the RPC program number its prepared to serve.
 
 In our case, port 111 is access to a network file system. Lets use nmap to enumerate this.
 
