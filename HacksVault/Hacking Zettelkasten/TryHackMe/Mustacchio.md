@@ -277,7 +277,7 @@ u+UH
 []A\A]A^A_
 Live Nginx Log Reader
 tail -f /var/log/nginx/access.log
-:*3$"
+:*3$''
 GCC: (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
 crtstuff.c
 deregister_tm_clones
