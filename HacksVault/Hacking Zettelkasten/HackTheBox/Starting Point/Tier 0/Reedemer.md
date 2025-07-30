@@ -34,26 +34,74 @@ Now we add the target IP to our /etc/hosts file, so we don't have to remember th
 We add a line with the given IP and a name .
 # Task 1
 
+Which TCP port is open on the machine?
 
-
+```bash
+ 6379
+```
 # Task 2
 
+Which service is running on the port that is open on the machine?
+
+```bash
+ redis
+```
 # Task 3
 
+What type of database is Redis? Choose from the following options: (i) In-memory Database, (ii) Traditional Database
+
+```bash
+ In-memory Database
+```
 # Task 4
 
+Which command-line utility is used to interact with the Redis server? Enter the program name you would enter into the terminal without any arguments.
+
+```bash
+ redis-cli
+```
 # Task 5
 
+Which flag is used with the Redis command-line utility to specify the hostname?
+
+```bash
+ -h
+```
 # Task 6
 
+Once connected to a Redis server, which command is used to obtain the information and statistics about the Redis server?
+
+```bash
+ info
+```
 # Task 7
 
+What is the version of the Redis server being used on the target machine?
+
+```bash
+ 5.0.7
+```
 # Task 8
 
+```bash
+ select
+```
 # Task 9
 
+How many keys are present inside the database with index 0?
+
+```bash
+ 4
+```
 # Task 10
 
+```bash
+ keys *
+```
 # Task 11
 
-# Task 12
+Submit root flag
+
+```
+ [[redacted_flag]]
+```
