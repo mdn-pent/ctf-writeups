@@ -10,7 +10,7 @@ This Machine is the continuum of [Ice](./Ice.md) room .
 Root the [Windows](../../3%20-%20Tags/Hacking%20Concepts/Windows.md)  machine
 # Scenario
 
-Throughout this room, we'll be looking at alternative modes of exploitation without the use of [Metasploit](../../3%20-%20Tags/Hacking%20Tools/Metasploit.md) or really exploitation tools in general beyond [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) and [Dirbuster](../../3%20-%20Tags/Hacking%20Tools/Dirbuster.md). To wrap up the room, we'll be [pivoting](../../3%20-%20Tags/Hacking%20Concepts/pivoting.md) back to these tools for persistence and additional steps we can take. Without further delay, let's deploy our target machine!
+Throughout this room, we'll be looking at alternative modes of exploitation without the use of [Metasploit](../../3%20-%20Tags/Hacking%20Tools/Metasploit.md) or really exploitation tools in general beyond [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) and [Dirbuster](../../3%20-%20Tags/Hacking%20Tools/Dirbuster.md). To wrap up the room, we'll be [Pivoting](../../3%20-%20Tags/Hacking%20Concepts/Pivoting.md) back to these tools for persistence and additional steps we can take. Without further delay, let's deploy our target machine!
 ## Rustscan/Nmap
 
 Now that we've launched our target, let's perform some basic [Enumeration](../../3%20-%20Tags/Hacking%20Concepts/Enumeration.md) of the services running on it! We can use [Rustscan](../../3%20-%20Tags/Hacking%20Tools/Rustscan.md) and pass the results to [Nmap](../../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
