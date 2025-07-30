@@ -113,5 +113,5 @@ We can access on telnet protocol as root without password and retrieve the [Flag
 └─$ telnet meow.htb 23 -l root
 
 root@Meow:~# cat flag.txt
- b40abdfe23665f766f9c61ecba8a4c19
+  [[redacted_flag]]
 ```
