@@ -169,6 +169,5 @@ flag.txt  worknotes.txt
                                       
 ┌──(mdn0x㉿mdn0xKali)-[~/HTB/Starting Point/Tier 0/Dancing]
 └─$ cat flag.txt
-[[redacted_flag]] 
+5f61c10dffbc77a704d76016a22f1664 
 ```
-
