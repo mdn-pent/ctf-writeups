@@ -249,7 +249,7 @@ User saad may run the following commands on ip-10-10-193-229:
 ```
 
 We can run ping as root.
-## Google Search
+## PrivESC with LD_PRELOAD
 
 If we search about ping vectors we find an interesting PoC for LD_PRELOAD (notice it's in the path) :
 
@@ -305,4 +305,4 @@ cat: root/root.txt: No such file or directory
 
 And we have the **root flag**.
 
-This technique was so cool, never did something like that. 
+This technique was so cool, never did something like that.
