@@ -89,7 +89,7 @@ and now if we go to the main page on port 65524 and in the [Source Code](../../3
 
 <img src="../../Flameshots/06daf159a86267455a39ff70c83bf8c4.png" alt="06daf159a86267455a39ff70c83bf8c4.png" width="383" height="100">
 
-on the same page we find what looks like another string that we need to [Decode](../../3%20-%20Tags/Hacking%20Concepts/Decode.md). The hint says: “its encoded with ba..”
+on the same page we find what looks like another string that we need [Decoding](../../3%20-%20Tags/Hacking%20Concepts/Decoding.md). The hint says: “its encoded with ba..”
 
 ![3109e8fb4fa41289d7ea1148473eeae0.png](../../2%20-%20Resources/Others/Flameshots/3109e8fb4fa41289d7ea1148473eeae0.png)
 
