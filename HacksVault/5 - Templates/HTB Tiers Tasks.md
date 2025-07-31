@@ -1,5 +1,5 @@
 - - - 
-created : 30-07-2025 
+created : {{date}} 
 
 Tags : #veryeasy
 - - - 
