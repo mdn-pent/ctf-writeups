@@ -11,3 +11,11 @@ Additionally, you'll learn how to navigate [Jenkins](../../../../3%20-%20Tags/Ha
 - Learn how to login to Jenkins and upload a Groovy Shell Script.
 
 Learn how to upload files to an S3 Bucket.
+
+## Boxes
+
+1. [Appointment](./Appointment.md)
+2. [Sequel](./Sequel.md)
+3. [Crocodile](./Crocodile.md)
+4. [Responder](./Responder.md)
+5. [Three](./Three.md) 
