@@ -207,7 +207,7 @@ We'll use [Gobuster](../../../../3%20-%20Tags/Hacking%20Tools/Gobuster.md) to en
 ```
 
 The answer is `login.php`.
-# Submit root flag
+# Submit Flag
 
 We can cat the other file from [FTP](../../../../3%20-%20Tags/Hacking%20Concepts/FTP.md) to see the admin password :
 
