@@ -34,76 +34,62 @@ Now we add the target IP to our /etc/hosts file, so we don't have to remember th
 We add a line with the given IP and a name .
 # Task 1
 
-Which TCP port is open on the machine?
-## Rustscan/Nmap
+Question 1
 
-We can use [Rustscan](../3%20-%20Tags/Hacking%20Tools/Rustscan.md) that will pass the result to [Nmap](../3%20-%20Tags/Hacking%20Tools/Nmap.md) :
-
-```bash
- ┌──(mdn0x㉿mdn0xKali)-[~/HTB/Starting Point/Tier 0/Reedemer]
-└─$ rustscan 
+```
 
 ```
 # Task 2
 
-Which TCP port is open on the machine?
+Question 2
 
 ```bash
  
 ```
 # Task 3
 
-What type of database is Redis? Choose from the following options: (i) In-memory Database, (ii) Traditional Database
+Question 3
 
 ```bash
   
 ```
 # Task 4
 
-Which command-line utility is used to interact with the Redis server? Enter the program name you would enter into the terminal without any arguments.
+Question 4
 
 ```bash
  
 ```
 # Task 5
 
-Which flag is used with the Redis command-line utility to specify the hostname?
+Question 5
 
 ```bash
  
 ```
 # Task 6
 
-Once connected to a Redis server, which command is used to obtain the information and statistics about the Redis server?
+Question 6
 
 ```bash
  
 ```
 # Task 7
 
-What is the version of the Redis server being used on the target machine?
+Question 7
 
 ```bash
 
 ```
 # Task 8
 
-Which command is used to select the desired database in Redis?
+Question 8
 
 ```bash
  
 ```
 # Task 9
 
-How many keys are present inside the database with index 0?
-# Task 10
-
-Which command is used to obtain all the keys in a database?
-
-```bash
-  
-```
-# Task 11
-
-Submit root flag
+Question 9
+# Submit Flags
 
