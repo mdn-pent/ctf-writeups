@@ -381,7 +381,7 @@ $ ls
 11
 user.txt
 $ cat user.txt
-ec9b13ca4d6229cd5cc1e09980965bf7
+ {{REDACTED_FLAG}}
 ```
 ## Submit root flag 
 
@@ -389,7 +389,7 @@ We can use `vi` since we run it as root, we open it `sudo vi /etc/posgresql/11/m
 
 ```
 root@vaccine:/var/lib/postgresql# cat /root/root.txt
-dd6e058e814260bc70e9bbdef2715849
+ {{REDACTED_FLAG}}
 ```
 
 Pwned !!
