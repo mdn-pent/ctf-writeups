@@ -352,7 +352,7 @@ This key is not known by any other names.
 Now we need `postgres` password, we will search it in config files :
 
 ```bash
-postgres@vaccine:~$ find /var/www -type f -exec grep -i 'postgre' {} \; 2>/dev/null
+postgres@vaccine:~$ find /var/www -type f -exec grep -i 'postgres' {} \; 2>/dev/null
           $conn = pg_connect("host=localhost port=5432 dbname=carsdb user=postgres password=P@s5w0rd!");
 ```
 
