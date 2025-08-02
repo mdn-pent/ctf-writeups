@@ -276,7 +276,7 @@ Mode                 LastWriteTime         Length Name
 
 
 *Evil-WinRM* PS C:\Users\mike\Desktop> type flag.txt
-ea81b7afddd03efaa0945333ed147fac
+ {{REDACTED_FLAG}}
 *Evil-WinRM* PS C:\Users\mike\Desktop> 
 
 ```
