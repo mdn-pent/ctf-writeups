@@ -279,7 +279,7 @@ www-data
 cd ..
 
 cat flag.txt
- {{REDACTED_FLAG}}
+a980d99281a28d638ac68b9bf9453c2b
 ```
 
 Pwned !!
