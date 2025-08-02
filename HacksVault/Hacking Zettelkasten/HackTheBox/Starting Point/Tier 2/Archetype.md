@@ -363,7 +363,7 @@ Directory of C:\Users\sql_svc\Desktop
 
 C:\Users\sql_svc\Desktop>type user.txt
 type user.txt
- {{REDACTED_FLAG}}
+3e7b102e78218e935bf3f4951fec21a3
 ```
 ## Root flag
 
@@ -464,7 +464,7 @@ We have creds, now we need a tool to log in as Administrator on our target PC an
 └─$ cp /usr/share/doc/python3-impacket/examples/psexec.py .
 
 C:\Windows\system32> type C:\Users\Administrator\Desktop\root.txt
- {{REDACTED_FLAG}}
+b91ccec3305e98240082d4474b848528
 
 ```
 
