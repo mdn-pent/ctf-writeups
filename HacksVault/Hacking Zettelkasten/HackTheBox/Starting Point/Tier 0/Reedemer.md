@@ -300,7 +300,7 @@ Which command is used to obtain all the keys in a database?
 ```bash
  keys * 
 ```
-# Task 11
+# Submit Flag
 
 Submit root flag
 
@@ -318,6 +318,6 @@ And we `get` flag :
 
 ```bash
 redm.htb:6379> get flag
-"redacted_flag"
+ {{REDACTED_FLAG}}
 ```
 
