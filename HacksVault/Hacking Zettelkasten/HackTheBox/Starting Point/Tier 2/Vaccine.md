@@ -308,7 +308,7 @@ zsh: suspended  nc -lvnp 1337
 [1]  + continued  nc -lvnp 1337
                                reset
 ```
-## Persistance Setting
+## Persistence Setting
 
 This shell is unstable and will not work after a while so i will make a [SSH](../../../../3%20-%20Tags/Hacking%20Concepts/SSH.md) key with [SSH-KeyGen](../../../../3%20-%20Tags/Hacking%20Tools/SSH-KeyGen.md) and `echo` that in the right folder, then access on [SSH](../../../../3%20-%20Tags/Hacking%20Concepts/SSH.md) :
 
