@@ -296,7 +296,7 @@ We can find the flag in robert's home :
 ```bash
 robert@oopsie://$ cd --
 robert@oopsie:~$ cat user.txt 
-f2c74ee8db7983851ab2a96a44eb7981
+ {{REDACTED_FLAG}}
 ```
 ## Submit root flag 
 
@@ -331,8 +331,7 @@ root
 reports  root.txt
 # cat root.txt      
 # less root.txt
-
-af13b0bee69f8a877c3faf667f7beacf
+ {{REDACTED_FLAG}}
 ```
 
 Pwned !!
